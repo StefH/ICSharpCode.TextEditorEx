@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Forms;
 
-namespace ICSharpCode.TextEditor
+namespace ICSharpCode.TextEditor.UserControls
 {
     public partial class GotoForm : Form
     {

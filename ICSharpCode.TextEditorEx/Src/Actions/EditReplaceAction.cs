@@ -1,4 +1,6 @@
-﻿namespace ICSharpCode.TextEditor.Src.Actions
+﻿using ICSharpCode.TextEditor.UserControls;
+
+namespace ICSharpCode.TextEditor.Src.Actions
 {
     class EditReplaceAction : FindAndReplaceFormAction
     {

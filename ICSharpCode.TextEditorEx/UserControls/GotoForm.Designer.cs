@@ -1,4 +1,4 @@
-﻿namespace ICSharpCode.TextEditor
+﻿namespace ICSharpCode.TextEditor.UserControls
 {
     partial class GotoForm
     {
@@ -31,7 +31,7 @@
             this.lblLineNumber = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtLineNumber = new ICSharpCode.TextEditor.Int32TextBox();
+            this.txtLineNumber = new Int32TextBox();
             this.SuspendLayout();
             // 
             // lblLineNumber

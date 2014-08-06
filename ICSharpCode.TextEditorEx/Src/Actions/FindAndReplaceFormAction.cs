@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.TextEditor.Actions;
+using ICSharpCode.TextEditor.UserControls;
 
 namespace ICSharpCode.TextEditor.Src.Actions
 {

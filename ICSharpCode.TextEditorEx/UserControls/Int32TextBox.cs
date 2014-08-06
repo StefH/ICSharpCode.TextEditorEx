@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ICSharpCode.TextEditor
+namespace ICSharpCode.TextEditor.UserControls
 {
     class Int32TextBox : TextBox
     {

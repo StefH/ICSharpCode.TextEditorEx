@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Document;
 
-namespace ICSharpCode.TextEditor
+namespace ICSharpCode.TextEditor.UserControls
 {
     public partial class FindAndReplaceForm : Form
     {

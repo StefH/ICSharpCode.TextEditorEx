@@ -1,4 +1,4 @@
-﻿namespace ICSharpCode.TextEditor
+﻿namespace ICSharpCode.TextEditor.UserControls
 {
 	partial class FindAndReplaceForm
 	{

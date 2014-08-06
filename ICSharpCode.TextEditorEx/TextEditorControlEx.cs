@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Src.Actions;
+using ICSharpCode.TextEditor.UserControls;
 
 namespace ICSharpCode.TextEditor
 {

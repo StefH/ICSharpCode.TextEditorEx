@@ -45,19 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindAndReplaceForm.cs">
+    <Compile Include="UserControls\FindAndReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindAndReplaceForm.designer.cs">
+    <Compile Include="UserControls\FindAndReplaceForm.designer.cs">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GotoForm.cs">
+    <Compile Include="UserControls\GotoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GotoForm.Designer.cs">
+    <Compile Include="UserControls\GotoForm.Designer.cs">
       <DependentUpon>GotoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Int32TextBox.cs">
+    <Compile Include="UserControls\Int32TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,10 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FindAndReplaceForm.resx">
+    <EmbeddedResource Include="UserControls\FindAndReplaceForm.resx">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GotoForm.resx">
+    <EmbeddedResource Include="UserControls\GotoForm.resx">
       <DependentUpon>GotoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
