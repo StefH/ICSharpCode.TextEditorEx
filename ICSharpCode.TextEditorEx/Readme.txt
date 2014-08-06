@@ -1,0 +1,1 @@
+﻿Based on http://www.codeproject.com/Articles/30936/Using-ICSharpCode-TextEditor
