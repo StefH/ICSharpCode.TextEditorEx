@@ -1,4 +1,4 @@
 ICSharpCode.TextEditorEx
 ========================
 
-Extended version based on ICSharpCode.TextEditor which support Search/Replace and Goto
+Extended version based on ICSharpCode.TextEditor which supports Search/Replace and GotoLineNumber
