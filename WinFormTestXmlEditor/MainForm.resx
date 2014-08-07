@@ -122,31 +122,29 @@
 
 &lt;!-- comments --&gt;
 &lt;rootNode xmlns:namespace="http://www.w3.org/TR/html4/"&gt;
-  &lt;childNodes&gt;
-    &lt;childNode attribute1 = "value"
+	&lt;childNodes&gt;
+		&lt;childNode attribute1 = "value"
                namespace:attribute2='value'
                attribute3=''/&gt;
-    &lt;childNode /&gt;
-    &lt;childNode /&gt;
-    &lt;childNode /&gt;
-    &lt;childNode
+		&lt;childNode /&gt;
+		&lt;childNode /&gt;
+		&lt;childNode /&gt;
+		&lt;childNode
       attr1="value"
       attr2="10"
       attr3="hello"
           &gt;
       value
-    &lt;/childNode&gt;
-	&lt;!-- Attributes are highlighted correctly --&gt;
-&lt;childNode attr=a&gt;value&lt;/childNodes&gt;
-&lt;childNode attr='a'&gt;value&lt;/childNodes&gt;
-&lt;childNode attr="a"&gt;value&lt;/childNodes&gt;
+		&lt;/childNode&gt;
 
-&lt;!-- The values are incorrectly highlighted as attribute=value --&gt;
-&lt;childNode&gt;attr=a&lt;/childNodes&gt;
-&lt;childNode&gt;attr='a'&lt;/childNodes&gt;
-&lt;childNode&gt;attr="a"&lt;/childNodes&gt;
-    &lt;namespace:childNode&gt;
-      &lt;![CDATA[
+		&lt;childNode attr='a'&gt;value&lt;/childNode&gt;
+		&lt;childNode attr="a"&gt;value&lt;/childNode&gt;
+		&lt;childNode&gt;attr=a&lt;/childNode&gt;
+		&lt;childNode&gt;attr='a'&lt;/childNode&gt;
+		&lt;childNode&gt;attr="a"&lt;/childNode&gt;
+
+		&lt;namespace:childNode&gt;
+			&lt;![CDATA[
               this is some CDATA content
               &lt;!-- comments inside cdata --&gt;
               &lt;b alert='false'&gt;tags inside cdata&lt;/b&gt;
@@ -154,8 +152,8 @@
 
       value = "plain string outside"
       hello = world
-    &lt;/namespace:childNode&gt;
-  &lt;/childNodes&gt;
+		&lt;/namespace:childNode&gt;
+	&lt;/childNodes&gt;
 &lt;/rootNode&gt;
 
 &lt;!--

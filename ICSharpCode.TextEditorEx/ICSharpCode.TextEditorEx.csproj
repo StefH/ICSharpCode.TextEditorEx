@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Src\Document\FoldingStrategy\IFoldingStrategyEx.cs" />
+    <Compile Include="Src\Document\FoldingStrategy\XmlFoldingStrategy.cs" />
     <Compile Include="UserControls\FindAndReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
