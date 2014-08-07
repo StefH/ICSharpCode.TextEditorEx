@@ -11,7 +11,7 @@ namespace WinFormTestXmlEditor
 
             //textEditorControl1.SetHighlighting("XML");
             //textEditorControl1.SetFoldingStrategy("XML");
-            textEditorControl1.Font = new Font("Courier New", 8.25f, FontStyle.Regular);
+            //textEditorControl1.Font = new Font("Courier New", 8.25f, FontStyle.Regular);
 
             //UpdateAndCheckFoldings();
         }

@@ -56,13 +56,15 @@ namespace WinFormTestXmlEditor
             // textEditorControl1
             // 
             this.textEditorControl1.FoldingStrategy = "XML";
-            this.textEditorControl1.IsReadOnly = false;
-            this.textEditorControl1.Location = new System.Drawing.Point(12, 22);
+            this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditorControl1.Location = new System.Drawing.Point(13, 35);
             this.textEditorControl1.Name = "textEditorControl1";
-            this.textEditorControl1.Size = new System.Drawing.Size(597, 353);
+            this.textEditorControl1.ShowVRuler = false;
+            this.textEditorControl1.Size = new System.Drawing.Size(596, 353);
             this.textEditorControl1.SyntaxHighlighting = "XML";
             this.textEditorControl1.TabIndex = 0;
             this.textEditorControl1.Text = resources.GetString("textEditorControl1.Text");
+            this.textEditorControl1.VRulerRow = 999;
             this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
             // 
             // MainForm

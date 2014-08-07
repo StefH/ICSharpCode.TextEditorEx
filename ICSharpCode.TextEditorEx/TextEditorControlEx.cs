@@ -23,7 +23,57 @@ namespace ICSharpCode.TextEditor
             editactions[Keys.F3 | Keys.Shift] = new FindAgainReverseAction(findForm, this);
 
             editactions[Keys.Control | Keys.G] = new GoToLineNumberAction();
+
+            TextChanged += TextChangedEventHandler;
         }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            TextChanged -= TextChangedEventHandler;
+        }
+
+        private void TextChangedEventHandler(object sender, EventArgs e)
+        {
+            var editor = sender as TextEditorControlEx;
+            if (editor != null)
+            {
+                bool vScrollBarIsVisible = editor.Document.TotalNumberOfLines > ActiveTextAreaControl.TextArea.TextView.VisibleLineCount;
+                ActiveTextAreaControl.ShowScrollBars(Orientation.Vertical, HideVScrollBarIfPossible | vScrollBarIsVisible);
+            }
+        }
+
+        /// <value>
+        /// The base font of the text area. No bold or italic fonts
+        /// can be used because bold/italic is reserved for highlighting
+        /// purposes.
+        /// </value>
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DefaultValue(typeof(Font), null)]
+        [Description("The base font of the text area. No bold or italic fonts can be used because bold/italic is reserved for highlighting purposes.")]
+        public override Font Font
+        {
+            get
+            {
+                return Document.TextEditorProperties.Font;
+            }
+            set
+            {
+                Document.TextEditorProperties.Font = value;
+                OptionsChanged();
+            }
+        }
+
+        [Category("Appearance")]
+        [DefaultValue(false)]
+        [Description("Hide the vertical ScrollBar if it's not needed. ")]
+        public bool HideVScrollBarIfPossible { get; set; }
 
         private string _foldingStrategy;
         [Category("Appearance")]
@@ -58,17 +108,42 @@ namespace ICSharpCode.TextEditor
             }
         }
 
+        [Category("Behavior")]
+        [DefaultValue(false)]
+        [Description("If true document is readonly.")]
+        [Browsable(true)]
+        public new bool IsReadOnly
+        {
+            get
+            {
+                return Document.ReadOnly;
+            }
+            set
+            {
+                Document.ReadOnly = value;
+                OptionsChanged();
+            }
+        }
 
         /// <summary>
         /// Sets the text and refreshes the control.
         /// </summary>
         /// <param name="text">The text.</param>
-        public void SetTextAndRefresh(string text)
+        /// <param name="updateFoldings">if set to <c>true</c> [update foldings].</param>
+        public void SetTextAndRefresh(string text, bool updateFoldings = false)
         {
             ResetText();
             Text = text;
+
+            if (updateFoldings && Document.TextEditorProperties.EnableFolding)
+            {
+                Document.FoldingManager.UpdateFoldings(null, null);
+            }
+
             Refresh();
         }
+
+
 
         /// <summary>
         /// Sets the folding strategy. Currently only XML is supported.
@@ -79,6 +154,11 @@ namespace ICSharpCode.TextEditor
             if (foldingStrategy == null)
             {
                 throw new ArgumentNullException("foldingStrategy");
+            }
+
+            if (!Document.TextEditorProperties.EnableFolding)
+            {
+                return;
             }
 
             switch (foldingStrategy.ToUpper())
@@ -113,6 +193,27 @@ namespace ICSharpCode.TextEditor
             }
 
             return new List<string>();
+        }
+    }
+
+    public static class TextAreaControlExtensions
+    {
+        /// <summary>
+        /// Extension method to show a scrollbar.
+        /// </summary>
+        /// <param name="textAreaControl">The text area control.</param>
+        /// <param name="orientation">The orientation.</param>
+        /// <param name="isVisible">if set to <c>true</c> [is visible].</param>
+        public static void ShowScrollBars(this TextAreaControl textAreaControl, Orientation orientation, bool isVisible)
+        {
+            if (orientation == Orientation.Vertical)
+            {
+                textAreaControl.VScrollBar.Visible = isVisible;
+            }
+            else
+            {
+                textAreaControl.HScrollBar.Visible = isVisible;
+            }
         }
     }
 }
