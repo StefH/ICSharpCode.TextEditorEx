@@ -9,11 +9,11 @@ namespace WinFormTestXmlEditor
         {
             InitializeComponent();
 
-            textEditorControl1.SetHighlighting("XML");
-            textEditorControl1.SetFoldingStrategy("XML");
+            //textEditorControl1.SetHighlighting("XML");
+            //textEditorControl1.SetFoldingStrategy("XML");
             textEditorControl1.Font = new Font("Courier New", 8.25f, FontStyle.Regular);
 
-            UpdateAndCheckFoldings();
+            //UpdateAndCheckFoldings();
         }
 
         private void textEditorControl1_TextChanged(object sender, System.EventArgs e)

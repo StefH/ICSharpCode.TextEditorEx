@@ -31,20 +31,10 @@ namespace WinFormTestXmlEditor
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.SuspendLayout();
-            // 
-            // textEditorControl1
-            // 
-            this.textEditorControl1.IsReadOnly = false;
-            this.textEditorControl1.Location = new System.Drawing.Point(12, 22);
-            this.textEditorControl1.Name = "textEditorControl1";
-            this.textEditorControl1.Size = new System.Drawing.Size(597, 353);
-            this.textEditorControl1.TabIndex = 0;
-            this.textEditorControl1.Text = resources.GetString("textEditorControl1.Text");
-            this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
             // 
             // textBox1
             // 
@@ -62,6 +52,18 @@ namespace WinFormTestXmlEditor
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "XML Folding errors:";
+            // 
+            // textEditorControl1
+            // 
+            this.textEditorControl1.FoldingStrategy = "XML";
+            this.textEditorControl1.IsReadOnly = false;
+            this.textEditorControl1.Location = new System.Drawing.Point(12, 22);
+            this.textEditorControl1.Name = "textEditorControl1";
+            this.textEditorControl1.Size = new System.Drawing.Size(597, 353);
+            this.textEditorControl1.SyntaxHighlighting = "XML";
+            this.textEditorControl1.TabIndex = 0;
+            this.textEditorControl1.Text = resources.GetString("textEditorControl1.Text");
+            this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
             // 
             // MainForm
             // 

@@ -13,8 +13,6 @@ namespace ICSharpCode.TextEditor
     [ToolboxItem(true)]
     public class TextEditorControlEx : TextEditorControl
     {
-        private string _foldingStrategy;
-
         public TextEditorControlEx()
         {
             var findForm = new FindAndReplaceForm();
@@ -26,6 +24,40 @@ namespace ICSharpCode.TextEditor
 
             editactions[Keys.Control | Keys.G] = new GoToLineNumberAction();
         }
+
+        private string _foldingStrategy;
+        [Category("Appearance")]
+        [Description("Set the Folding Strategy. Currently only XML is supported.")]
+        public string FoldingStrategy
+        {
+            get
+            {
+                return _foldingStrategy;
+            }
+            set
+            {
+                SetFoldingStrategy(value);
+                OptionsChanged();
+            }
+        }
+
+        private string _syntaxHighlighting;
+        [Category("Appearance")]
+        [Description("Sets the Syntax Highlighting.")]
+        public string SyntaxHighlighting
+        {
+            get
+            {
+                return _syntaxHighlighting;
+            }
+            set
+            {
+                _syntaxHighlighting = value;
+                SetHighlighting(_syntaxHighlighting);
+                OptionsChanged();
+            }
+        }
+
 
         /// <summary>
         /// Sets the text and refreshes the control.
