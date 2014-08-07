@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ICSharpCode.TextEditorEx</id>
+        <version>1.0.0.3</version>
+        <authors>Stef Heyenrath</authors>
+        <owners>Stef Heyenrath</owners>
+        <licenseUrl>http://www.opensource.org/licenses/lgpl-2.1.php</licenseUrl>
+        <projectUrl>http://github.com/StefH/ICSharpCode.TextEditorEx</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An extension on the ICSharpCode Text Editor which supports
+* search &amp; replace
+* go to linenumber
+* XML folding</description>
+        <summary>An extension on the ICSharpCode Text Editor which supports search/replace, go to linenumber and XML folding.</summary>
+        <releaseNotes>Exposed FoldingStrategy and SyntaxHighlighting as design-time properties.</releaseNotes>
+        <language>en-US</language>
+        <dependencies>
+            <dependency id="ICSharpCode.TextEditor" version="3.2.1.6466" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="ICSharpCode.TextEditorEx.dll" target="lib\net40\ICSharpCode.TextEditorEx.dll" />
+    </files>
+</package>
