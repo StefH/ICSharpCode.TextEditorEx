@@ -89,6 +89,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ICSharpCode.TextEditorEx.1.0.0.0.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

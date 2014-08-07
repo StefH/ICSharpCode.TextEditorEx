@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ICSharpCode.TextEditorEx</id>
+        <version>1.0.0.0</version>
+        <authors>Stef Heyenrath</authors>
+        <owners>Stef Heyenrath</owners>
+        <licenseUrl>http://www.opensource.org/licenses/lgpl-2.1.php</licenseUrl>
+        <projectUrl>http://github.com/StefH/ICSharpCode.TextEditorEx</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An extension on the ICSharpCode Text Editor which supports search &amp; replace and go to linenumber.</description>
+        <summary>An extension on the ICSharpCode Text Editor which supports search/replace and go to linenumber.</summary>
+        <language>en-US</language>
+        <dependencies>
+            <dependency id="ICSharpCode.TextEditor" version="3.2.1.6466" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="ICSharpCode.TextEditorEx.dll" target="lib\net40\ICSharpCode.TextEditorEx.dll" />
+    </files>
+</package>
