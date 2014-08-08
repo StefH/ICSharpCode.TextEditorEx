@@ -57,6 +57,7 @@ namespace WinFormTestXmlEditor
             // 
             this.textEditorControl1.FoldingStrategy = "XML";
             this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditorControl1.HideVScrollBarIfPossible = true;
             this.textEditorControl1.Location = new System.Drawing.Point(13, 35);
             this.textEditorControl1.Name = "textEditorControl1";
             this.textEditorControl1.ShowVRuler = false;

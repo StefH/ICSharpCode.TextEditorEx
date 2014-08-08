@@ -43,8 +43,11 @@ namespace ICSharpCode.TextEditor
             var editor = sender as TextEditorControlEx;
             if (editor != null)
             {
-                bool vScrollBarIsVisible = editor.Document.TotalNumberOfLines > ActiveTextAreaControl.TextArea.TextView.VisibleLineCount;
-                ActiveTextAreaControl.ShowScrollBars(Orientation.Vertical, HideVScrollBarIfPossible | vScrollBarIsVisible);
+                bool vScrollBarIsNeeded = editor.Document.TotalNumberOfLines > ActiveTextAreaControl.TextArea.TextView.VisibleLineCount;
+                if (ActiveTextAreaControl.VScrollBar.Visible && HideVScrollBarIfPossible && !vScrollBarIsNeeded)
+                {
+                    ActiveTextAreaControl.ShowScrollBars(Orientation.Vertical, false);
+                }
             }
         }
 
