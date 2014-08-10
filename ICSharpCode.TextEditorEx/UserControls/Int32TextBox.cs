@@ -49,7 +49,7 @@ namespace ICSharpCode.TextEditor.UserControls
             int i;
             if (int.TryParse(text, out i))
             {
-                return i < Max && i > Min;
+                return i <= Max && i >= Min;
             }
 
             return false;
