@@ -31,7 +31,13 @@ namespace ICSharpCode.TextEditor.UserControls
         {
             get
             {
-                return int.Parse(txtLineNumber.Text);
+                int selectedLineNumber;
+                if (!string.IsNullOrEmpty(txtLineNumber.Text) && int.TryParse(txtLineNumber.Text, out selectedLineNumber))
+                {
+                    return selectedLineNumber;
+                }
+
+                return 0;
             }
 
             set

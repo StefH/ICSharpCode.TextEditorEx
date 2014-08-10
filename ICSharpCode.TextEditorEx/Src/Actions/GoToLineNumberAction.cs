@@ -19,7 +19,7 @@ namespace ICSharpCode.TextEditor.Src.Actions
             _gotoForm.LastLineNumber = textArea.Document.TotalNumberOfLines;
             _gotoForm.SelectedLineNumber = textArea.Caret.Line + 1;
 
-            if (DialogResult.OK == _gotoForm.ShowDialogEx())
+            if (DialogResult.OK == _gotoForm.ShowDialogEx() && _gotoForm.SelectedLineNumber > 0)
             {
                 textArea.Caret.Position = new TextLocation(0, _gotoForm.SelectedLineNumber - 1);
             }
