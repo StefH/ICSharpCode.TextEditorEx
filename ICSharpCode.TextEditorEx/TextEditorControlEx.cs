@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using ICSharpCode.TextEditor.Document;
 using ICSharpCode.TextEditor.Src.Actions;
 using ICSharpCode.TextEditor.Src.Document.FoldingStrategy;
+using ICSharpCode.TextEditor.Src.Document.HighlightingStrategy.SyntaxModes;
 using ICSharpCode.TextEditor.UserControls;
 
 namespace ICSharpCode.TextEditor
@@ -21,8 +23,10 @@ namespace ICSharpCode.TextEditor
             editactions[Keys.Control | Keys.H] = new EditReplaceAction(findForm, this);
             editactions[Keys.F3] = new FindAgainAction(findForm, this);
             editactions[Keys.F3 | Keys.Shift] = new FindAgainReverseAction(findForm, this);
-
             editactions[Keys.Control | Keys.G] = new GoToLineNumberAction();
+
+            // Add additional Syntax highlighting providers
+            HighlightingManager.Manager.AddSyntaxModeFileProvider(new ResourceSyntaxModeProviderEx());
 
             TextChanged += TextChangedEventHandler;
         }
@@ -80,7 +84,7 @@ namespace ICSharpCode.TextEditor
 
         private string _foldingStrategy;
         [Category("Appearance")]
-        [Description("Set the Folding Strategy. Currently only XML is supported.")]
+        [Description("Set the Folding Strategy. Supported : XML and CSharp.")]
         public string FoldingStrategy
         {
             get
@@ -146,8 +150,6 @@ namespace ICSharpCode.TextEditor
             Refresh();
         }
 
-
-
         /// <summary>
         /// Sets the folding strategy. Currently only XML is supported.
         /// </summary>
@@ -164,11 +166,16 @@ namespace ICSharpCode.TextEditor
                 return;
             }
 
-            switch (foldingStrategy.ToUpper())
+            switch (foldingStrategy)
             {
                 case "XML":
-                    _foldingStrategy = "XML";
+                    _foldingStrategy = foldingStrategy;
                     Document.FoldingManager.FoldingStrategy = new XmlFoldingStrategy();
+                    break;
+
+                case "CSharp":
+                    _foldingStrategy = foldingStrategy;
+                    Document.FoldingManager.FoldingStrategy = new CSharpFoldingStrategy();
                     break;
 
                 default:
