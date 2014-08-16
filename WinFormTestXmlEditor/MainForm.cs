@@ -26,5 +26,11 @@ namespace WinFormTestXmlEditor
             textEditorControl1.Document.FoldingManager.UpdateFoldings(null, null);
             textBox1.Text = string.Join("\r\n", textEditorControl1.GetFoldingErrors());
         }
+
+        private void cmbHighlight_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            var cmb = (ComboBox) sender;
+            textEditorControl1.SetHighlighting(cmb.SelectedItem.ToString());
+        }
     }
 }

@@ -6,7 +6,7 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}</ProjectGuid>
-    <AssemblyName>ICSharpCode.TextEditor</AssemblyName>
+    <AssemblyName>ICSharpCode.TextEditorEx</AssemblyName>
     <OutputTarget>Library</OutputTarget>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>False</NoStdLib>
@@ -21,7 +21,7 @@
     <BaseAddress>98041856</BaseAddress>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>4096</FileAlignment>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SourceAnalysisOverrideSettingsFile>C:\Users\nly41531\AppData\Roaming\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -43,6 +43,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>False</Optimize>
@@ -78,10 +79,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\Actions\FindAndReplaceFormActions.cs" />
+    <Compile Include="Src\Actions\GoToLineNumberAction.cs" />
     <Compile Include="Src\Document\DefaultDocument.cs" />
     <Compile Include="Src\Document\DocumentEventArgs.cs" />
     <Compile Include="Src\Document\DocumentFactory.cs" />
+    <Compile Include="Src\Document\FoldingStrategy\CSharpFoldingStrategy.cs" />
+    <Compile Include="Src\Document\FoldingStrategy\IFoldingStrategyEx.cs" />
+    <Compile Include="Src\Document\FoldingStrategy\XmlFoldingStrategy.cs" />
     <Compile Include="Src\Document\HighlightingStrategy\HighlightingDefinitionInvalidException.cs" />
+    <Compile Include="Src\Document\HighlightingStrategy\SyntaxModes\ResourceSyntaxModeProviderEx.cs" />
     <Compile Include="Src\Document\IDocument.cs" />
     <Compile Include="Src\Document\ISegment.cs" />
     <Compile Include="Src\Document\LineManager\DeferredEventList.cs" />
@@ -114,6 +122,9 @@
     <Compile Include="Src\Document\TextBufferStrategy\GapTextBufferStrategy.cs" />
     <Compile Include="Src\Document\TextBufferStrategy\ITextBufferStrategy.cs" />
     <Compile Include="Src\Document\TextBufferStrategy\StringTextBufferStrategy.cs" />
+    <Compile Include="Src\Gui\TextEditorControlEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Src\Util\AugmentableRedBlackTree.cs" />
     <Compile Include="Src\Util\CheckedList.cs" />
     <Compile Include="Src\Util\LoggingService.cs" />
@@ -208,13 +219,33 @@
     </Compile>
     <Compile Include="Src\Document\BookmarkManager\Bookmark.cs" />
     <Compile Include="Src\Document\BookmarkManager\BookmarkEventHandler.cs" />
-    <Compile Include="Configuration\AssemblyInfo.cs" />
+    <Compile Include="UserControls\FindAndReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\FindAndReplaceForm.designer.cs">
+      <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GotoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\GotoForm.Designer.cs">
+      <DependentUpon>GotoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Int32TextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Resources\ASPX.xshd" />
     <EmbeddedResource Include="Resources\BAT-Mode.xshd" />
     <EmbeddedResource Include="Resources\CPP-Mode.xshd" />
     <EmbeddedResource Include="Resources\Coco-Mode.xshd" />
     <EmbeddedResource Include="Resources\CSharp-Mode.xshd" />
     <EmbeddedResource Include="Resources\HTML-Mode.xshd" />
+    <EmbeddedResource Include="UserControls\FindAndReplaceForm.resx">
+      <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GotoForm.resx">
+      <DependentUpon>GotoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Migrated rules for ICSharpCode.TextEditor.ruleset" />
     <None Include="Resources\ICSharpCode.TextEditor.snk" />
     <EmbeddedResource Include="Resources\TextEditorControl.bmp" />
@@ -251,6 +282,14 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SyntaxModesEx.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+    <EmbeddedResource Include="Resources\Lua-Mode.xshd" />
+    <EmbeddedResource Include="Resources\SQL-Mode.xshd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,6 +34,7 @@ namespace WinFormTestXmlEditor
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.cmbHighlight = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -68,11 +69,26 @@ namespace WinFormTestXmlEditor
             this.textEditorControl1.VRulerRow = 999;
             this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
             // 
+            // cmbHighlight
+            // 
+            this.cmbHighlight.FormattingEnabled = true;
+            this.cmbHighlight.Items.AddRange(new object[] {
+            "XML",
+            "Lua",
+            "SQL"});
+            this.cmbHighlight.Location = new System.Drawing.Point(636, 35);
+            this.cmbHighlight.Name = "cmbHighlight";
+            this.cmbHighlight.Size = new System.Drawing.Size(121, 21);
+            this.cmbHighlight.TabIndex = 3;
+            this.cmbHighlight.Text = "XML";
+            this.cmbHighlight.SelectedIndexChanged += new System.EventHandler(this.cmbHighlight_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 475);
+            this.ClientSize = new System.Drawing.Size(766, 475);
+            this.Controls.Add(this.cmbHighlight);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textEditorControl1);
@@ -88,6 +104,7 @@ namespace WinFormTestXmlEditor
         private ICSharpCode.TextEditor.TextEditorControlEx textEditorControl1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbHighlight;
 
     }
 }
