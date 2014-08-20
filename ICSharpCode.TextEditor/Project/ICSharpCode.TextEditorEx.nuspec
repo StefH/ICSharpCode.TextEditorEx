@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>ICSharpCode.TextEditorEx</id>
-        <version>1.0.0.6</version>
+        <version>$version$</version>
         <authors>Stef Heyenrath</authors>
         <owners>Stef Heyenrath</owners>
         <licenseUrl>http://www.opensource.org/licenses/lgpl-2.1.php</licenseUrl>
@@ -24,8 +24,4 @@
         <dependencies>
          </dependencies>
     </metadata>
-    <files>
-      <file src="bin\Release\ICSharpCode.TextEditor.dll" target="lib\net40\ICSharpCode.TextEditor.dll" />
-      <file src="bin\Release\ICSharpCode.TextEditorEx.dll" target="lib\net40\ICSharpCode.TextEditorEx.dll" />
-    </files>
 </package>
