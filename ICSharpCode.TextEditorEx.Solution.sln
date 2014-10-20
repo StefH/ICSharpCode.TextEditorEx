@@ -1,18 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31010.0
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormTestXmlEditor", "WinFormTestXmlEditor\WinFormTestXmlEditor.csproj", "{39BEAFED-7888-4903-A3DA-DE8806349572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.TextEditorEx", "ICSharpCode.TextEditor\Project\ICSharpCode.TextEditorEx.csproj", "{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA8D4B8C-D3E3-477E-A514-EBC4DC5E3278}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{691D7D68-4C36-4C77-9F9E-2411F652FD81}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.TextEditorEx", "ICSharpCode.TextEditor\Project\ICSharpCode.TextEditorEx.csproj", "{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
