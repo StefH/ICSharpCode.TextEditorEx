@@ -12,6 +12,8 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 
 using ICSharpCode.TextEditor.Document;
+using ICSharpCode.TextEditor.Actions;
+using System.Text.RegularExpressions;
 
 namespace ICSharpCode.TextEditor
 {
@@ -83,6 +85,12 @@ namespace ICSharpCode.TextEditor
 			ResizeRedraw = true;
 			Document.UpdateCommited += new EventHandler(CommitUpdateRequested);
 			OptionsChanged();
+            base.Document.DocumentChanged += this.Document_DocumentChanged;
+            if (EnableContextMenu)
+            {
+                this.CreateContextMenu();
+            }
+
 		}
 		
 		protected virtual void InitializeTextAreaControl(TextAreaControl newControl)
@@ -392,5 +400,252 @@ namespace ICSharpCode.TextEditor
 			ev.HasMorePages = curLineNr < Document.TotalNumberOfLines;
 		}
 		#endregion
-	}
+	
+
+
+        
+
+        #region Extended properties
+
+        public string SelectedText
+        {
+            get
+            {
+                return ActiveTextAreaControl.SelectionManager.SelectedText;
+            }
+        }
+
+        public string[] Lines
+        {
+            get
+            {
+                return base.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
+            }
+        }
+
+        #endregion
+
+        private int previousSearchLine = -1;
+        private int previousSearchWord;
+
+      
+         
+
+        #region Commands implementations
+
+        private bool CanUndo()
+        {
+            return   base.Document.UndoStack.CanUndo;
+        }
+
+        private bool CanRedo()
+        {
+            return   base.Document.UndoStack.CanRedo;
+        }
+
+        private bool CanCopy()
+        {
+            return   ActiveTextAreaControl.SelectionManager.HasSomethingSelected;
+        }
+
+        private bool CanCut()
+        {
+            return  ActiveTextAreaControl.SelectionManager.HasSomethingSelected;
+        }
+
+        private bool CanPaste()
+        {
+            return   ActiveTextAreaControl.TextArea.ClipboardHandler.EnablePaste;
+        }
+
+        private bool CanSelectAll()
+        {
+          
+            if (base.Document.TextContent == null) return false;
+            return !base.Document.TextContent.Trim().Equals(String.Empty);
+        }
+
+
+
+
+        private void DoCut()
+        {
+            new Cut().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoCopy()
+        {
+            new Copy().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoPaste()
+        {
+            new Paste().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoSelectAll()
+        {
+            new SelectWholeDocument().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        public void DoToggleFoldings()
+        {
+            new ToggleAllFoldings().Execute(ActiveTextAreaControl.TextArea);
+        }
+
+        #endregion
+
+        [DefaultValue(false)]
+        public bool  EnableContextMenu { get; set; }
+        # region Initialization
+
+        private void CreateContextMenu()
+        {
+            //contextmenu
+            var mnu = new ContextMenuStrip();
+            var mnuUndo = new ToolStripMenuItem("&Undo");
+            mnuUndo.Click += (object sender, EventArgs e) => { Undo(); };
+            var mnuRedo = new ToolStripMenuItem("&Redo");
+            mnuRedo.Click += (object sender, EventArgs e) => { Redo(); };
+            var mnuCut = new ToolStripMenuItem("&Cut");
+            mnuCut.Click += (object sender, EventArgs e) => { DoCut(); };
+            var mnuCopy = new ToolStripMenuItem("Cop&y");
+            mnuCopy.Click += (object sender, EventArgs e) => { DoCopy (); };
+            var mnuPaste = new ToolStripMenuItem("&Paste");
+            mnuPaste.Click += (object sender, EventArgs e) => { DoPaste(); };
+            var mnuSelectAll = new ToolStripMenuItem("&Select All");
+            mnuSelectAll.Click += (object sender, EventArgs e) => { DoSelectAll(); };
+            //Add to main context menu
+            mnu.Items.AddRange(new ToolStripItem[] { mnuUndo, mnuRedo, mnuCut, mnuCopy, mnuPaste, mnuSelectAll });
+              mnu.Opening += (object sender, CancelEventArgs e) => {
+                  mnuUndo.Enabled = CanUndo();
+                  mnuCopy.Enabled = CanCopy();
+                  mnuCut.Enabled = CanCut();
+                  mnuPaste.Enabled = CanPaste();
+                  mnuRedo.Enabled = CanRedo();
+                  mnuSelectAll.Enabled  = CanSelectAll();
+            };
+            //Assign to datagridview
+            ActiveTextAreaControl.ContextMenuStrip = mnu;
+        }
+ 
+
+        #endregion
+
+        public void SelectText(int start, int length)
+        {
+            var textLength = Document.TextLength;
+            if (textLength < (start + length))
+            {
+                length = (textLength - 1) - start;
+            }
+            ActiveTextAreaControl.Caret.Position = Document.OffsetToPosition(start + length);
+            ActiveTextAreaControl.SelectionManager.ClearSelection();
+            ActiveTextAreaControl.SelectionManager.SetSelection(new DefaultSelection(Document, Document.OffsetToPosition(start), Document.OffsetToPosition(start + length)));
+            Refresh();
+        }
+
+        public void Find(string search)
+        {
+            this.Find(search, false);
+        }
+
+        public void Find(string search, bool caseSensitive)
+        {
+            var found = false;
+
+            var i = 0;
+            var lines = this.Lines;
+            foreach (var line in lines)
+            {
+                if (i > previousSearchLine)
+                {
+                    int start;
+                    if (previousSearchWord > line.Length)
+                    {
+                        start = caseSensitive ?
+                            line.IndexOf(search) :
+                            line.ToLower().IndexOf(search.ToLower());
+
+                        previousSearchWord = 0;
+                    }
+                    else
+                    {
+                        start = caseSensitive ?
+                            line.IndexOf(search, previousSearchWord) :
+                            line.ToLower().IndexOf(search.ToLower(), previousSearchWord);
+                    }
+                    var end = start + search.Length;
+                    if (start != -1)
+                    {
+                        var p1 = new Point(start, i);
+                        var p2 = new Point(end, i);
+
+                        //TODO base.ActiveTextAreaControl.SelectionManager.SetSelection(p1, p2);
+                        ActiveTextAreaControl.ScrollTo(i);
+                        base.Refresh();
+
+                        previousSearchWord = end;
+                        previousSearchLine = i - 1;
+                        found = true;
+                        break;
+                    }
+
+                    previousSearchWord = 0;
+                }
+
+                i += 1;
+                if (i >= lines.Length - 1)
+                {
+                    previousSearchLine = -1;
+                }
+            }
+
+            if (!found)
+            {
+                MessageBox.Show("The following specified text was not found: " + Environment.NewLine + Environment.NewLine + search);
+            }
+        }
+
+        public void Replace(string search, string replace, bool caseSensitive)
+        {
+            if (ActiveTextAreaControl.SelectionManager.HasSomethingSelected &&  ActiveTextAreaControl.SelectionManager.SelectedText == search)
+            {
+                var text = ActiveTextAreaControl.SelectionManager.SelectedText;
+                ActiveTextAreaControl.Caret.Position =ActiveTextAreaControl.SelectionManager.SelectionCollection[0].StartPosition;
+                ActiveTextAreaControl.SelectionManager.ClearSelection();
+                ActiveTextAreaControl.Document.Replace(ActiveTextAreaControl.Caret.Offset, text.Length, replace);
+            }
+            this.Find(search, caseSensitive);
+        }
+
+        public void ReplaceAll(string search, string replace)
+        {
+            this.ReplaceAll(search, replace, false);
+        }
+
+        public void ReplaceAll(string search, string replace, bool caseSensitive)
+        {
+            base.Text = Regex.Replace(base.Text, search, replace, caseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
+            base.Refresh();
+        }
+
+        public void ResetLastFound()
+        {
+            previousSearchLine = -1;
+            previousSearchWord = 0;
+        }
+
+        private void Document_DocumentChanged(object sender, DocumentEventArgs e)
+        {
+            //base.Document.FoldingManager.UpdateFoldings(string.Empty, null);
+            bool isVisible = (base.Document.TotalNumberOfLines > this.ActiveTextAreaControl.TextArea.TextView.VisibleLineCount);
+          ActiveTextAreaControl.VScrollBar.Visible = isVisible;               
+        }
+
+    }
 }
