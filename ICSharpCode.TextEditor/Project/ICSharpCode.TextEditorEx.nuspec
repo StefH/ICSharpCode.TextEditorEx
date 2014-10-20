@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>ICSharpCode.TextEditorEx</id>
+        <id>ICSharpCode.TextEditor.ContextMenu</id>
         <version>$version$</version>
-        <authors>Stef Heyenrath</authors>
-        <owners>Stef Heyenrath</owners>
+        <authors>MysticBoy</authors>
+        <owners>MysticBoy</owners>
         <licenseUrl>http://www.opensource.org/licenses/lgpl-2.1.php</licenseUrl>
-        <projectUrl>http://github.com/StefH/ICSharpCode.TextEditorEx</projectUrl>
+        <projectUrl>https://github.com/oSilas/ICSharpCode.TextEditorEx</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An extension on the ICSharpCode.TextEditor which supports
 * search &amp; replace
@@ -14,12 +14,15 @@
 * Lua and SQL Syntax highlighting
 * XML folding and CSharp folding
 * Several enhancements
+* ContextMenu  Cut,Copy,Paste,Select All , Redo and  Undo!
         </description>
         <summary>An extension on the ICSharpCode.TextEditor which supports Search/Replace, GoToLinenumber and XML + CSharp folding.</summary>
         <releaseNotes>
 * Fixed the go to linenumber (empty string + min/max check)
 * Added Lua and SQL Syntax highlighting
-* Added CSharpFoldingStrategy</releaseNotes>
+* Added CSharpFoldingStrategy
+* ContextMenu  Cut,Copy,Paste,Select All , Redo and  Undo!
+        </releaseNotes>
         <language>en-US</language>
         <dependencies>
          </dependencies>
