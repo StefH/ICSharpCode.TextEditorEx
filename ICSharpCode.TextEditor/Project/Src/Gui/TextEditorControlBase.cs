@@ -28,7 +28,7 @@ namespace ICSharpCode.TextEditor
 	{
 		string    currentFileName = null;
 		int       updateLevel     = 0;
-		IDocument document;
+		protected IDocument document; // Stef Heyenrath : Changed to protected
 		
 		/// <summary>
 		/// This hashtable contains all editor keys, where
@@ -105,7 +105,7 @@ namespace ICSharpCode.TextEditor
 			}
 		}
 		
-		void OnDocumentChanged(object sender, EventArgs e)
+		protected void OnDocumentChanged(object sender, EventArgs e) // Stef Heyenrath : changed to protected
 		{
 			OnTextChanged(e);
 		}

@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GotoForm));
             this.lblLineNumber = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtLineNumber = new Int32TextBox();
+            this.txtLineNumber = new ICSharpCode.TextEditor.UserControls.Int32TextBox();
             this.SuspendLayout();
             // 
             // lblLineNumber
@@ -66,6 +67,8 @@
             // txtLineNumber
             // 
             this.txtLineNumber.Location = new System.Drawing.Point(16, 30);
+            this.txtLineNumber.Max = 2147483647;
+            this.txtLineNumber.Min = 1;
             this.txtLineNumber.Name = "txtLineNumber";
             this.txtLineNumber.Size = new System.Drawing.Size(254, 20);
             this.txtLineNumber.TabIndex = 1;
@@ -83,10 +86,10 @@
             this.Controls.Add(this.txtLineNumber);
             this.Controls.Add(this.lblLineNumber);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GotoForm";
-            this.ShowIcon = false;
             this.Text = "Go To Line";
             this.ResumeLayout(false);
             this.PerformLayout();

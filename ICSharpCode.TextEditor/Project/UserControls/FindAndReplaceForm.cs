@@ -251,6 +251,7 @@ namespace ICSharpCode.TextEditor.UserControls
                     textArea.Caret.Position = textArea.SelectionManager.SelectionCollection[0].StartPosition;
                     textArea.SelectionManager.RemoveSelectedText();
                 }
+
                 textArea.InsertString(text);
             }
             finally
@@ -305,6 +306,7 @@ namespace ICSharpCode.TextEditor.UserControls
         {
             SetScanRegion(sel.Offset, sel.Length);
         }
+
         /// <summary>Sets the region to search. The region is updated 
         /// automatically as the document changes.</summary>
         public void SetScanRegion(int offset, int length)
@@ -314,10 +316,12 @@ namespace ICSharpCode.TextEditor.UserControls
                 bkgColor.HalfMix(Color.FromArgb(160, 160, 160)));
             _document.MarkerStrategy.AddMarker(_region);
         }
+
         public bool HasScanRegion
         {
             get { return _region != null; }
         }
+
         public void ClearScanRegion()
         {
             if (_region != null)
@@ -326,8 +330,17 @@ namespace ICSharpCode.TextEditor.UserControls
                 _region = null;
             }
         }
-        public void Dispose() { ClearScanRegion(); GC.SuppressFinalize(this); }
-        ~TextEditorSearcher() { Dispose(); }
+
+        public void Dispose()
+        {
+            ClearScanRegion();
+            GC.SuppressFinalize(this);
+        }
+
+        ~TextEditorSearcher()
+        {
+            Dispose();
+        }
 
         /// <summary>Begins the start offset for searching</summary>
         public int BeginOffset
@@ -470,34 +483,52 @@ namespace ICSharpCode.TextEditor.UserControls
         }
     }
 
-    /// <summary>Bundles a group of markers together so that they can be cleared 
-    /// together.</summary>
+    /// <summary>Bundles a group of markers together so that they can be cleared together.</summary>
     public class HighlightGroup : IDisposable
     {
         readonly List<TextMarker> _markers = new List<TextMarker>();
         readonly TextEditorControl _editor;
         readonly IDocument _document;
+
         public HighlightGroup(TextEditorControl editor)
         {
             _editor = editor;
             _document = editor.Document;
         }
+
         public void AddMarker(TextMarker marker)
         {
             _markers.Add(marker);
             _document.MarkerStrategy.AddMarker(marker);
         }
+
         public void ClearMarkers()
         {
             foreach (TextMarker m in _markers)
                 _document.MarkerStrategy.RemoveMarker(m);
+
             _markers.Clear();
             _editor.Refresh();
         }
-        public void Dispose() { ClearMarkers(); GC.SuppressFinalize(this); }
-        ~HighlightGroup() { Dispose(); }
 
-        public IList<TextMarker> Markers { get { return _markers.AsReadOnly(); } }
+        public void Dispose()
+        {
+            ClearMarkers();
+            GC.SuppressFinalize(this);
+        }
+
+        ~HighlightGroup()
+        {
+            Dispose();
+        }
+
+        public IList<TextMarker> Markers
+        {
+            get
+            {
+                return _markers.AsReadOnly();
+            }
+        }
     }
 
     public static class Extensions
@@ -507,10 +538,12 @@ namespace ICSharpCode.TextEditor.UserControls
             Debug.Assert(lo <= hi);
             return x < lo ? lo : (x > hi ? hi : x);
         }
+
         public static bool IsInRange(this int x, int lo, int hi)
         {
             return x >= lo && x <= hi;
         }
+
         public static Color HalfMix(this Color one, Color two)
         {
             return Color.FromArgb(

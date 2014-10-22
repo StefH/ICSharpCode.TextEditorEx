@@ -82,6 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Src\Actions\FindAndReplaceFormActions.cs" />
     <Compile Include="Src\Actions\GoToLineNumberAction.cs" />
     <Compile Include="Src\Document\DefaultDocument.cs" />
@@ -236,6 +241,10 @@
     <Compile Include="UserControls\Int32TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ASPX.xshd" />
     <EmbeddedResource Include="Resources\BAT-Mode.xshd" />
     <EmbeddedResource Include="Resources\CPP-Mode.xshd" />
@@ -297,6 +306,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
+    <None Include="Resources\sc_linearrowend.png" />
+    <None Include="Resources\sc_cancel.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\sc_searchdialog.png" />
+    <None Include="Resources\sc_copy.png" />
+    <None Include="Resources\sc_undo.png" />
+    <None Include="Resources\sc_selectall.png" />
+    <None Include="Resources\sc_redo.png" />
+    <None Include="Resources\sc_paste.png" />
+    <None Include="Resources\sc_cut.png" />
     <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
     <EmbeddedResource Include="Resources\Lua-Mode.xshd" />
     <EmbeddedResource Include="Resources\SQL-Mode.xshd" />

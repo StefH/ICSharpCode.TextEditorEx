@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using ICSharpCode.TextEditor.Actions;
 using ICSharpCode.TextEditor.Document;
+using ICSharpCode.TextEditor.Properties;
 using ICSharpCode.TextEditor.Src.Actions;
 using ICSharpCode.TextEditor.Src.Document.FoldingStrategy;
 using ICSharpCode.TextEditor.Src.Document.HighlightingStrategy.SyntaxModes;
@@ -16,20 +19,32 @@ namespace ICSharpCode.TextEditor
     [ToolboxItem(true)]
     public class TextEditorControlEx : TextEditorControl
     {
+        private bool _contextMenuEnabled;
+        private bool _contextMenuShowDefaultIcons;
+        private readonly FindAndReplaceForm _findForm = new FindAndReplaceForm();
+
         public TextEditorControlEx()
         {
-            var findForm = new FindAndReplaceForm();
-
-            editactions[Keys.Control | Keys.F] = new EditFindAction(findForm, this);
-            editactions[Keys.Control | Keys.H] = new EditReplaceAction(findForm, this);
-            editactions[Keys.F3] = new FindAgainAction(findForm, this);
-            editactions[Keys.F3 | Keys.Shift] = new FindAgainReverseAction(findForm, this);
+            editactions[Keys.Control | Keys.F] = new EditFindAction(_findForm, this);
+            editactions[Keys.Control | Keys.H] = new EditReplaceAction(_findForm, this);
+            editactions[Keys.F3] = new FindAgainAction(_findForm, this);
+            editactions[Keys.F3 | Keys.Shift] = new FindAgainReverseAction(_findForm, this);
             editactions[Keys.Control | Keys.G] = new GoToLineNumberAction();
 
             // Add additional Syntax highlighting providers
             HighlightingManager.Manager.AddSyntaxModeFileProvider(new ResourceSyntaxModeProviderEx());
 
             TextChanged += TextChangedEventHandler;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            if (ContextMenuEnabled)
+            {
+                AssignContextMenu(CreateNewContextMenu(ContextMenuShowDefaultIcons));
+            }
+
+            base.OnLoad(e);
         }
 
         /// <summary>
@@ -53,6 +68,52 @@ namespace ICSharpCode.TextEditor
                 {
                     ActiveTextAreaControl.ShowScrollBars(Orientation.Vertical, false);
                 }
+            }
+        }
+
+        #region Extended properties
+        public string SelectedText
+        {
+            get
+            {
+                return ActiveTextAreaControl.SelectionManager.SelectedText;
+            }
+        }
+
+        public string[] Lines
+        {
+            get
+            {
+                return base.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
+            }
+        }
+        #endregion
+
+        #region Designer Properties
+        /// <value>
+        /// The current document
+        /// </value>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new IDocument Document
+        {
+            get
+            {
+                return document;
+            }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                if (document != null)
+                {
+                    document.DocumentChanged -= OnDocumentChanged;
+                    document.DocumentChanged -= OnDocumentChangedDoUpdateContextMenu;
+                }
+                document = value;
+                document.UndoStack.TextEditorControl = this;
+                document.DocumentChanged += OnDocumentChanged;
+                document.DocumentChanged += OnDocumentChangedDoUpdateContextMenu;
             }
         }
 
@@ -133,6 +194,41 @@ namespace ICSharpCode.TextEditor
             }
         }
 
+        [DefaultValue(false)]
+        [Category("Appearance")]
+        [Description("Show default Icons in ContextMenu")]
+        [Browsable(true)]
+        public bool ContextMenuShowDefaultIcons
+        {
+            get
+            {
+                return _contextMenuShowDefaultIcons & _contextMenuEnabled;
+            }
+
+            set
+            {
+                _contextMenuShowDefaultIcons = _contextMenuEnabled & value;
+            }
+        }
+
+        [DefaultValue(false)]
+        [Category("Appearance")]
+        [Description("Enable a ContextMenu")]
+        [Browsable(true)]
+        public bool ContextMenuEnabled
+        {
+            get
+            {
+                return _contextMenuEnabled;
+            }
+
+            set
+            {
+                _contextMenuEnabled = value;
+            }
+        }
+        #endregion
+
         /// <summary>
         /// Sets the text and refreshes the control.
         /// </summary>
@@ -205,6 +301,173 @@ namespace ICSharpCode.TextEditor
 
             return new List<string>();
         }
+
+        #region ContextMenu Commands implementations
+        private bool CanUndo()
+        {
+            return Document.UndoStack.CanUndo;
+        }
+
+        private bool CanRedo()
+        {
+            return Document.UndoStack.CanRedo;
+        }
+
+        private bool CanCopy()
+        {
+            return ActiveTextAreaControl.SelectionManager.HasSomethingSelected;
+        }
+
+        private bool CanCut()
+        {
+            return ActiveTextAreaControl.SelectionManager.HasSomethingSelected;
+        }
+
+        private bool CanDelete()
+        {
+            return ActiveTextAreaControl.SelectionManager.HasSomethingSelected;
+        }
+
+        private bool CanPaste()
+        {
+            return ActiveTextAreaControl.TextArea.ClipboardHandler.EnablePaste;
+        }
+
+        private bool CanSelectAll()
+        {
+            if (Document.TextContent == null)
+                return false;
+
+            return !Document.TextContent.Trim().Equals(String.Empty);
+        }
+
+        private bool CanFind()
+        {
+            if (Document.TextContent == null)
+                return false;
+
+            return Document.TextContent.Trim().Any();
+        }
+
+        private void DoCut()
+        {
+            new Cut().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoDelete()
+        {
+            new Delete().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoCopy()
+        {
+            new Copy().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoPaste()
+        {
+            new Paste().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        private void DoSelectAll()
+        {
+            new SelectWholeDocument().Execute(ActiveTextAreaControl.TextArea);
+            ActiveTextAreaControl.Focus();
+        }
+
+        public void DoToggleFoldings()
+        {
+            new ToggleAllFoldings().Execute(ActiveTextAreaControl.TextArea);
+        }
+
+        private void DoFind()
+        {
+            new EditFindAction(_findForm, this).Execute(ActiveTextAreaControl.TextArea);
+        }
+        #endregion
+
+        #region ContextMenu Initialization
+        private ContextMenuStrip CreateNewContextMenu(bool showImages)
+        {
+            //contextmenu
+            var mnu = new ContextMenuStrip();
+            var mnuUndo = new ToolStripMenuItem("&Undo", showImages ? Resources.sc_undo : null);
+            mnuUndo.Click += (sender, e) => Undo();
+
+            var mnuRedo = new ToolStripMenuItem("&Redo", showImages ? Resources.sc_redo : null);
+            mnuRedo.Click += (sender, e) => Redo();
+
+            var mnuCut = new ToolStripMenuItem("&Cut", showImages ? Resources.cut : null);
+            mnuCut.Click += (sender, e) => DoCut();
+
+            var mnuCopy = new ToolStripMenuItem("Cop&y", showImages ? Resources.sc_copy : null);
+            mnuCopy.Click += (sender, e) => DoCopy();
+
+            var mnuPaste = new ToolStripMenuItem("&Paste", showImages ? Resources.sc_paste : null);
+            mnuPaste.Click += (sender, e) => DoPaste();
+
+            var mnuDelete = new ToolStripMenuItem("&Delete", showImages ? Resources.sc_cancel : null);
+            mnuDelete.Click += (sender, e) => DoDelete();
+
+            var mnuSelectAll = new ToolStripMenuItem("&Select All", showImages ? Resources.sc_selectall : null);
+            mnuSelectAll.Click += (sender, e) => DoSelectAll();
+
+            var mnuFind = new ToolStripMenuItem("&Find", showImages ? Resources.sc_searchdialog : null);
+            mnuFind.Click += (sender, e) => DoFind();
+
+            //Add to main context menu
+            mnu.Items.AddRange(new ToolStripItem[] { mnuUndo, mnuRedo, mnuCut, mnuCopy, mnuPaste, mnuDelete, mnuSelectAll, mnuFind });
+            mnu.Opening += (sender, e) =>
+            {
+                mnuUndo.Enabled = CanUndo();
+                mnuCopy.Enabled = CanCopy();
+                mnuCut.Enabled = CanCut();
+                mnuDelete.Enabled = CanDelete();
+                mnuPaste.Enabled = CanPaste();
+                mnuRedo.Enabled = CanRedo();
+                mnuSelectAll.Enabled = CanSelectAll();
+                mnuFind.Enabled = CanFind();
+            };
+
+            return mnu;
+        }
+
+        private void AssignContextMenu(ContextMenuStrip mnu)
+        {
+            if (ActiveTextAreaControl.ContextMenuStrip != null)
+            {
+                ActiveTextAreaControl.ContextMenuStrip.Dispose();
+                ActiveTextAreaControl.ContextMenuStrip = null;
+            }
+
+            ActiveTextAreaControl.ContextMenuStrip = mnu;
+        }
+        #endregion
+
+        #region ContextMenu Methods
+        public void SelectText(int start, int length)
+        {
+            var textLength = Document.TextLength;
+            if (textLength < (start + length))
+            {
+                length = (textLength - 1) - start;
+            }
+            ActiveTextAreaControl.Caret.Position = Document.OffsetToPosition(start + length);
+            ActiveTextAreaControl.SelectionManager.ClearSelection();
+            ActiveTextAreaControl.SelectionManager.SetSelection(new DefaultSelection(Document, Document.OffsetToPosition(start), Document.OffsetToPosition(start + length)));
+            Refresh();
+        }
+
+        private void OnDocumentChangedDoUpdateContextMenu(object sender, DocumentEventArgs e)
+        {
+            bool isVisible = (Document.TotalNumberOfLines > ActiveTextAreaControl.TextArea.TextView.VisibleLineCount);
+            ActiveTextAreaControl.VScrollBar.Visible = isVisible;
+        }
+        #endregion
     }
 
     public static class TextAreaControlExtensions
