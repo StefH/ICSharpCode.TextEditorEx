@@ -86,15 +86,21 @@ namespace ICSharpCode.TextEditor
 			Document.UpdateCommited += new EventHandler(CommitUpdateRequested);
 			OptionsChanged();
             base.Document.DocumentChanged += this.Document_DocumentChanged;
+         
+
+		}
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             if (EnableContextMenu)
             {
                 this.CreateContextMenu();
             }
-
-		}
+        }
 		
 		protected virtual void InitializeTextAreaControl(TextAreaControl newControl)
 		{
+
 		}
 		
 		public override void OptionsChanged()
@@ -507,20 +513,28 @@ namespace ICSharpCode.TextEditor
         {
             //contextmenu
             var mnu = new ContextMenuStrip();
-            var mnuUndo = new ToolStripMenuItem("&Undo");
+            var mnuUndo = new ToolStripMenuItem(Resources.Language.Undo );
+            mnuUndo.ShortcutKeys = Keys.Control | Keys.Z;
             mnuUndo.Click += (object sender, EventArgs e) => { Undo(); };
-            var mnuRedo = new ToolStripMenuItem("&Redo");
+            var mnuRedo = new ToolStripMenuItem(Resources.Language.Redo);
+           // mnuRedo.ShortcutKeys = Keys.Shift | Keys.Alt | Keys.Back;
             mnuRedo.Click += (object sender, EventArgs e) => { Redo(); };
-            var mnuCut = new ToolStripMenuItem("&Cut");
+            var mnuCut = new ToolStripMenuItem(Resources.Language.Cut);
+            mnuCut.ShortcutKeys = Keys.Control | Keys.X;
+            var mnutemp1 = new  ToolStripSeparator();
             mnuCut.Click += (object sender, EventArgs e) => { DoCut(); };
-            var mnuCopy = new ToolStripMenuItem("Cop&y");
+            var mnuCopy = new ToolStripMenuItem(Resources.Language.Copy);
+            mnuCopy.ShortcutKeys = Keys.Control | Keys.C;
             mnuCopy.Click += (object sender, EventArgs e) => { DoCopy (); };
-            var mnuPaste = new ToolStripMenuItem("&Paste");
+            var mnuPaste = new ToolStripMenuItem(Resources.Language.Paste);
+            mnuPaste.ShortcutKeys = Keys.Control | Keys.V;
+            var mnutemp2 = new ToolStripSeparator();
             mnuPaste.Click += (object sender, EventArgs e) => { DoPaste(); };
-            var mnuSelectAll = new ToolStripMenuItem("&Select All");
+            var mnuSelectAll = new ToolStripMenuItem(Resources.Language.Select_All);
+            mnuSelectAll.ShortcutKeys = Keys.Control | Keys.A;
             mnuSelectAll.Click += (object sender, EventArgs e) => { DoSelectAll(); };
             //Add to main context menu
-            mnu.Items.AddRange(new ToolStripItem[] { mnuUndo, mnuRedo, mnuCut, mnuCopy, mnuPaste, mnuSelectAll });
+            mnu.Items.AddRange(new ToolStripItem[] { mnuUndo, mnuRedo, mnutemp1,mnuCut, mnuCopy, mnuPaste,mnutemp2, mnuSelectAll });
               mnu.Opening += (object sender, CancelEventArgs e) => {
                   mnuUndo.Enabled = CanUndo();
                   mnuCopy.Enabled = CanCopy();

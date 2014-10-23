@@ -82,6 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Language.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
     <Compile Include="Src\Actions\FindAndReplaceFormActions.cs" />
     <Compile Include="Src\Actions\GoToLineNumberAction.cs" />
     <Compile Include="Src\Document\DefaultDocument.cs" />
@@ -242,6 +247,10 @@
     <EmbeddedResource Include="Resources\Coco-Mode.xshd" />
     <EmbeddedResource Include="Resources\CSharp-Mode.xshd" />
     <EmbeddedResource Include="Resources\HTML-Mode.xshd" />
+    <EmbeddedResource Include="Resources\Language.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FindAndReplaceForm.resx">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
     </EmbeddedResource>
