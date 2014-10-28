@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WinFormTestXmlEditor
 {
@@ -29,7 +28,7 @@ namespace WinFormTestXmlEditor
 
         private void cmbHighlight_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            var cmb = (ComboBox) sender;
+            var cmb = (ComboBox)sender;
             textEditorControl1.SetHighlighting(cmb.SelectedItem.ToString());
         }
     }

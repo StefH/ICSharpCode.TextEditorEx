@@ -76,17 +76,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SyntaxModes.cs" />
     <Compile Include="Src\Actions\FindAndReplaceFormActions.cs" />
     <Compile Include="Src\Actions\GoToLineNumberAction.cs" />
     <Compile Include="Src\Document\DefaultDocument.cs" />
@@ -226,11 +229,23 @@
     </Compile>
     <Compile Include="Src\Document\BookmarkManager\Bookmark.cs" />
     <Compile Include="Src\Document\BookmarkManager\BookmarkEventHandler.cs" />
+    <Compile Include="UserControls\ContextMenuStripEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\ContextMenuStripEx.Designer.cs">
+      <DependentUpon>ContextMenuStripEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FindAndReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserControls\FindAndReplaceForm.designer.cs">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FormatCodeHtml.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\FormatCodeHtml.designer.cs">
+      <DependentUpon>FormatCodeHtml.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\GotoForm.cs">
       <SubType>Form</SubType>
@@ -241,6 +256,8 @@
     <Compile Include="UserControls\Int32TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utils\EventHelperUtils.cs" />
+    <Compile Include="Utils\WeakEventHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -253,6 +270,9 @@
     <EmbeddedResource Include="Resources\HTML-Mode.xshd" />
     <EmbeddedResource Include="UserControls\FindAndReplaceForm.resx">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FormatCodeHtml.resx">
+      <DependentUpon>FormatCodeHtml.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GotoForm.resx">
       <DependentUpon>GotoForm.cs</DependentUpon>
@@ -306,6 +326,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
+    <None Include="Resources\splitdocument.png" />
+    <None Include="Resources\htmlpage.png" />
     <None Include="Resources\sc_linearrowend.png" />
     <None Include="Resources\sc_cancel.png" />
     <None Include="Resources\cut.png" />

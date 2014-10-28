@@ -21,6 +21,7 @@ namespace ICSharpCode.TextEditor
     {
         private bool _contextMenuEnabled;
         private bool _contextMenuShowDefaultIcons;
+        private bool _contextMenuShowShortCutKeys;
         private readonly FindAndReplaceForm _findForm = new FindAndReplaceForm();
 
         public TextEditorControlEx()
@@ -41,7 +42,7 @@ namespace ICSharpCode.TextEditor
         {
             if (ContextMenuEnabled)
             {
-                AssignContextMenu(CreateNewContextMenu(ContextMenuShowDefaultIcons));
+                AssignContextMenu(CreateNewContextMenu(ContextMenuShowDefaultIcons, ContextMenuShowShortCutKeys));
             }
 
             base.OnLoad(e);
@@ -105,11 +106,13 @@ namespace ICSharpCode.TextEditor
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
                 if (document != null)
                 {
                     document.DocumentChanged -= OnDocumentChanged;
                     document.DocumentChanged -= OnDocumentChangedDoUpdateContextMenu;
                 }
+
                 document = value;
                 document.UndoStack.TextEditorControl = this;
                 document.DocumentChanged += OnDocumentChanged;
@@ -208,6 +211,23 @@ namespace ICSharpCode.TextEditor
             set
             {
                 _contextMenuShowDefaultIcons = _contextMenuEnabled & value;
+            }
+        }
+
+        [DefaultValue(false)]
+        [Category("Appearance")]
+        [Description("Show shortcut keys in ContextMenu")]
+        [Browsable(true)]
+        public bool ContextMenuShowShortCutKeys
+        {
+            get
+            {
+                return _contextMenuShowShortCutKeys & _contextMenuEnabled;
+            }
+
+            set
+            {
+                _contextMenuShowShortCutKeys = _contextMenuEnabled & value;
             }
         }
 
@@ -391,47 +411,70 @@ namespace ICSharpCode.TextEditor
         #endregion
 
         #region ContextMenu Initialization
-        private ContextMenuStrip CreateNewContextMenu(bool showImages)
+
+
+        private ContextMenuStrip CreateNewContextMenu(bool showImages, bool showKeys)
         {
-            //contextmenu
-            var mnu = new ContextMenuStrip();
-            var mnuUndo = new ToolStripMenuItem("&Undo", showImages ? Resources.sc_undo : null);
-            mnuUndo.Click += (sender, e) => Undo();
+            var mnu = new ContextMenuStripEx();
+            mnu.AddToolStripMenuItem("&Undo",
+                showImages ? Resources.sc_undo : null,
+                (sender, e) => Undo(),
+                showKeys ? Keys.Control | Keys.Z : Keys.None,
+                CanUndo
+            );
 
-            var mnuRedo = new ToolStripMenuItem("&Redo", showImages ? Resources.sc_redo : null);
-            mnuRedo.Click += (sender, e) => Redo();
+            mnu.AddToolStripMenuItem("&Redo",
+               showImages ? Resources.sc_redo : null,
+               (sender, e) => Redo(),
+               showKeys ? Keys.Control | Keys.Y : Keys.None,
+               CanRedo
+            );
 
-            var mnuCut = new ToolStripMenuItem("&Cut", showImages ? Resources.cut : null);
-            mnuCut.Click += (sender, e) => DoCut();
+            mnu.AddToolStripSeparator();
 
-            var mnuCopy = new ToolStripMenuItem("Cop&y", showImages ? Resources.sc_copy : null);
-            mnuCopy.Click += (sender, e) => DoCopy();
+            mnu.AddToolStripMenuItem("&Cut",
+                showImages ? Resources.cut : null,
+                (sender, e) => DoCut(),
+                showKeys ? Keys.Control | Keys.X : Keys.None,
+                CanCut
+            );
 
-            var mnuPaste = new ToolStripMenuItem("&Paste", showImages ? Resources.sc_paste : null);
-            mnuPaste.Click += (sender, e) => DoPaste();
+            mnu.AddToolStripMenuItem("Cop&y",
+                showImages ? Resources.sc_copy : null,
+                (sender, e) => DoCopy(),
+                showKeys ? Keys.Control | Keys.C : Keys.None,
+                CanCopy
+            );
 
-            var mnuDelete = new ToolStripMenuItem("&Delete", showImages ? Resources.sc_cancel : null);
-            mnuDelete.Click += (sender, e) => DoDelete();
+            mnu.AddToolStripMenuItem("&Paste",
+                showImages ? Resources.sc_paste : null,
+                (sender, e) => DoPaste(),
+                showKeys ? Keys.Control | Keys.V : Keys.None,
+                CanPaste
+            );
 
-            var mnuSelectAll = new ToolStripMenuItem("&Select All", showImages ? Resources.sc_selectall : null);
-            mnuSelectAll.Click += (sender, e) => DoSelectAll();
+            mnu.AddToolStripSeparator();
 
-            var mnuFind = new ToolStripMenuItem("&Find", showImages ? Resources.sc_searchdialog : null);
-            mnuFind.Click += (sender, e) => DoFind();
+            mnu.AddToolStripMenuItem("&Delete",
+                showImages ? Resources.sc_cancel : null,
+                (sender, e) => DoDelete(),
+                showKeys ? Keys.Delete : Keys.None,
+                CanDelete
+            );
 
-            //Add to main context menu
-            mnu.Items.AddRange(new ToolStripItem[] { mnuUndo, mnuRedo, mnuCut, mnuCopy, mnuPaste, mnuDelete, mnuSelectAll, mnuFind });
-            mnu.Opening += (sender, e) =>
-            {
-                mnuUndo.Enabled = CanUndo();
-                mnuCopy.Enabled = CanCopy();
-                mnuCut.Enabled = CanCut();
-                mnuDelete.Enabled = CanDelete();
-                mnuPaste.Enabled = CanPaste();
-                mnuRedo.Enabled = CanRedo();
-                mnuSelectAll.Enabled = CanSelectAll();
-                mnuFind.Enabled = CanFind();
-            };
+            mnu.AddToolStripMenuItem("&Select All",
+                showImages ? Resources.sc_selectall : null,
+                (sender, e) => DoSelectAll(),
+                showKeys ? Keys.Control | Keys.A : Keys.None,
+                CanSelectAll
+            );
+
+            mnu.AddToolStripMenuItem("&Find",
+                showImages ? Resources.sc_searchdialog : null,
+                (sender, e) => DoFind(),
+                showKeys ? Keys.Control | Keys.F : Keys.None,
+                CanFind
+            );
 
             return mnu;
         }

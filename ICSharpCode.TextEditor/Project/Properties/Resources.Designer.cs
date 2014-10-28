@@ -73,6 +73,16 @@ namespace ICSharpCode.TextEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap htmlpage {
+            get {
+                object obj = ResourceManager.GetObject("htmlpage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sc_cancel {
             get {
                 object obj = ResourceManager.GetObject("sc_cancel", resourceCulture);
@@ -156,6 +166,16 @@ namespace ICSharpCode.TextEditor.Properties {
         internal static System.Drawing.Bitmap sc_undo {
             get {
                 object obj = ResourceManager.GetObject("sc_undo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap splitdocument {
+            get {
+                object obj = ResourceManager.GetObject("splitdocument", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -33,8 +33,8 @@ namespace WinFormTestXmlEditor
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.cmbHighlight = new System.Windows.Forms.ComboBox();
+            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.SuspendLayout();
             // 
             // textBox1
@@ -54,10 +54,26 @@ namespace WinFormTestXmlEditor
             this.label1.TabIndex = 2;
             this.label1.Text = "XML Folding errors:";
             // 
+            // cmbHighlight
+            // 
+            this.cmbHighlight.FormattingEnabled = true;
+            this.cmbHighlight.Items.AddRange(new object[] {
+            "XML",
+            "Lua",
+            "SQL",
+            "CSharp"});
+            this.cmbHighlight.Location = new System.Drawing.Point(636, 35);
+            this.cmbHighlight.Name = "cmbHighlight";
+            this.cmbHighlight.Size = new System.Drawing.Size(121, 21);
+            this.cmbHighlight.TabIndex = 3;
+            this.cmbHighlight.Text = "XML";
+            this.cmbHighlight.SelectedIndexChanged += new System.EventHandler(this.cmbHighlight_SelectedIndexChanged);
+            // 
             // textEditorControl1
             // 
             this.textEditorControl1.ContextMenuEnabled = true;
             this.textEditorControl1.ContextMenuShowDefaultIcons = true;
+            this.textEditorControl1.ContextMenuShowShortCutKeys = true;
             this.textEditorControl1.FoldingStrategy = "XML";
             this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEditorControl1.HideVScrollBarIfPossible = true;
@@ -70,20 +86,6 @@ namespace WinFormTestXmlEditor
             this.textEditorControl1.Text = resources.GetString("textEditorControl1.Text");
             this.textEditorControl1.VRulerRow = 999;
             this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
-            // 
-            // cmbHighlight
-            // 
-            this.cmbHighlight.FormattingEnabled = true;
-            this.cmbHighlight.Items.AddRange(new object[] {
-            "XML",
-            "Lua",
-            "SQL"});
-            this.cmbHighlight.Location = new System.Drawing.Point(636, 35);
-            this.cmbHighlight.Name = "cmbHighlight";
-            this.cmbHighlight.Size = new System.Drawing.Size(121, 21);
-            this.cmbHighlight.TabIndex = 3;
-            this.cmbHighlight.Text = "XML";
-            this.cmbHighlight.SelectedIndexChanged += new System.EventHandler(this.cmbHighlight_SelectedIndexChanged);
             // 
             // MainForm
             // 
