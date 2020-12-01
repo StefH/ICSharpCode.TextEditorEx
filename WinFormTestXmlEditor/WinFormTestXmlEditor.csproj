@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+	  <TargetFrameworks>net40;net5.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <Copyright>Copyright © Stef Heyenrath 2014</Copyright>
     <Authors>Stef Heyenrath</Authors>
@@ -15,7 +15,9 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
+	<ItemGroup  Condition=" '$(TargetFramework)' == 'net40' ">
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ICSharpCode.TextEditor\Project\ICSharpCode.TextEditorEx.csproj" />
   </ItemGroup>
