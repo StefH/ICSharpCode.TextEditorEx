@@ -1,48 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFrameworks>net40;net5.0-windows</TargetFrameworks>
-    <UseWindowsForms>true</UseWindowsForms>
-    <PackageId>ICSharpCode.TextEditorEx</PackageId>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Copyright>Copyright © Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy 2014</Copyright>
-    <Version>1.0.0.7</Version>
-    <PackageProjectUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>TextEditor;ICSharpCode</PackageTags>
-    <Authors>Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy</Authors>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RootNamespace>ICSharpCode.TextEditor</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net40;net5.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PackageId>ICSharpCode.TextEditorEx</PackageId>
+		<Copyright>Copyright © Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy 2014-2020</Copyright>
+		<Version>1.1.0</Version>
+		<PackageProjectUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>TextEditor;ICSharpCode</PackageTags>
+		<Authors>Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy</Authors>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<RootNamespace>ICSharpCode.TextEditor</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
- 
-  <ItemGroup  Condition=" '$(TargetFramework)' == 'net40' ">
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
 	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup  Condition=" '$(TargetFramework)' == 'net40' ">
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\*.*" />
 	</ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>
