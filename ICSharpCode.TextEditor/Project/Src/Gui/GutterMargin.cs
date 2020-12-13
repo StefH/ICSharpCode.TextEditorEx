@@ -23,16 +23,16 @@ namespace ICSharpCode.TextEditor
 		StringFormat numberStringFormat = (StringFormat)StringFormat.GenericTypographic.Clone();
 		
 		public static Cursor RightLeftCursor;
-		
-		static GutterMargin()
-		{
-			Stream cursorStream = Assembly.GetCallingAssembly().GetManifestResourceStream("ICSharpCode.TextEditor.Resources.RightArrow.cur");
-			if (cursorStream == null) throw new Exception("could not find cursor resource");
-			RightLeftCursor = new Cursor(cursorStream);
-			cursorStream.Close();
-		}
-		
-		public void Dispose()
+
+        static GutterMargin()
+        {
+            using (var ms = new MemoryStream(Properties.Resources.RightArrow))
+            {
+                RightLeftCursor = new Cursor(ms);
+            }
+        }
+
+        public void Dispose()
 		{
 			numberStringFormat.Dispose();
 		}
