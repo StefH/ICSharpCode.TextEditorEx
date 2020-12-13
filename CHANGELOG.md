@@ -1,6 +1,7 @@
 # 1.1.0 (13 December 2020)
 - [#7](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/7) - add  ContextMenu  Cut,Copy,Paste,Select All , Redo and  Undo! [enhancement] contributed by [maikebing](https://github.com/maikebing)
 - [#13](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/13) - upgrade to .net 5.0 [enhancement] contributed by [maikebing](https://github.com/maikebing)
+- [#14](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/14) - Refactor contributed by [StefH](https://github.com/StefH)
 - [#6](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/6) - Merge Ex code into original [enhancement]
 - [#11](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/11) - I want to your functions(find, replace, goto line number) merge to https://github.com/megakraken/ICSharpCode.TextEditor
 
