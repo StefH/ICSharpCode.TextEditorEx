@@ -4,6 +4,7 @@
 - [#14](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/14) - Refactor contributed by [StefH](https://github.com/StefH)
 - [#6](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/6) - Merge Ex code into original [enhancement]
 - [#11](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/11) - I want to your functions(find, replace, goto line number) merge to https://github.com/megakraken/ICSharpCode.TextEditor
+- [#12](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/12) - nuget package for .NET 5.0
 
 # 1.0.0.6 (10 August 2014)
 - [#1](https://github.com/StefH/ICSharpCode.TextEditorEx/issues/1) - ICSharpCode.TextEditor RTF Copy bug with fractional font sizes 
