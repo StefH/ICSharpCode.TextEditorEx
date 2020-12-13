@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICSharpCode.TextEditorEx", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4AB7D80-8A69-4F24-B401-C122F2D6393A}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -30,8 +32,8 @@ Global
 		{39BEAFED-7888-4903-A3DA-DE8806349572}.Debug|x86.ActiveCfg = Debug|x86
 		{39BEAFED-7888-4903-A3DA-DE8806349572}.Debug|x86.Build.0 = Debug|x86
 		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|Any CPU.ActiveCfg = Release|x86
-		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|Mixed Platforms.Build.0 = Release|x86
+		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|x86.ActiveCfg = Release|x86
 		{39BEAFED-7888-4903-A3DA-DE8806349572}.Release|x86.Build.0 = Release|x86
 		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

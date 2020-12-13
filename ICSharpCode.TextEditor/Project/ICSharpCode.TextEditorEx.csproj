@@ -6,7 +6,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageId>ICSharpCode.TextEditorEx</PackageId>
 		<Copyright>Copyright © Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy 2014-2020</Copyright>
-		<Version>1.1.0.0</Version>
+		<Version>1.1.0</Version>
 		<PackageProjectUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -32,6 +32,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -43,9 +45,4 @@
 		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\*.*" />
 	</ItemGroup>
-
-	<ItemGroup>
-		
-	</ItemGroup>
-
 </Project>
