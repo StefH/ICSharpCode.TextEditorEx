@@ -31,3 +31,4 @@ Backup/
 UpgradeLog.*
 !packages/Microsoft.Bcl.Build*/tools/Microsoft.Bcl.Build.targets
 /.vs/ICSharpCode.TextEditorEx.Solution/DesignTimeBuild
+/.vs/ICSharpCode.TextEditorEx.Solution/v17
