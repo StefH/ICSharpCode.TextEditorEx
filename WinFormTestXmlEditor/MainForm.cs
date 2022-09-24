@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WinFormTestXmlEditor.Properties;
 
 namespace WinFormTestXmlEditor
 {
@@ -7,6 +8,8 @@ namespace WinFormTestXmlEditor
         public MainForm()
         {
             InitializeComponent();
+
+            UpdateText("XML");
 
             //textEditorControl1.SetHighlighting("XML");
             //textEditorControl1.SetFoldingStrategy("XML");
@@ -29,7 +32,25 @@ namespace WinFormTestXmlEditor
         private void cmbHighlight_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             var cmb = (ComboBox)sender;
-            textEditorControl1.SetHighlighting(cmb.SelectedItem.ToString());
+
+            var selectedItem = cmb.SelectedItem.ToString()!;
+
+            UpdateText(selectedItem);
+        }
+
+        private void UpdateText(string selectedItem)
+        {
+            textEditorControl1.Text = selectedItem switch
+            {
+                "XML" => Resources.ExampleXML,
+                "C#" => Resources.ExampleCSharp,
+                _ => string.Empty
+            };
+
+            textEditorControl1.SetHighlighting(selectedItem);
+            textEditorControl1.SetFoldingStrategy(selectedItem);
+
+            UpdateAndCheckFoldings();
         }
     }
 }

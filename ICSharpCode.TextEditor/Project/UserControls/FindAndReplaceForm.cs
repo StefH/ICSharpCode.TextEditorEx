@@ -425,7 +425,7 @@ namespace ICSharpCode.TextEditor.UserControls
             if (MatchCase)
                 matchFirstCh = (lookFor, c) => (lookFor == c);
             else
-                matchFirstCh = (lookFor, c) => (lookFor == Char.ToUpperInvariant(c));
+                matchFirstCh = (lookFor, c) => (lookFor == char.ToUpperInvariant(c));
             if (MatchWholeWordOnly)
                 matchWord = IsWholeWordMatch;
             else
@@ -471,7 +471,7 @@ namespace ICSharpCode.TextEditor.UserControls
         private bool IsAlphaNumeric(int offset)
         {
             char c = _document.GetCharAt(offset);
-            return Char.IsLetterOrDigit(c) || c == '_';
+            return char.IsLetterOrDigit(c) || c == '_';
         }
 
         private bool IsPartWordMatch(int offset)

@@ -41,7 +41,7 @@ namespace ICSharpCode.TextEditor.Document
 		public void SetContent(string text)
 		{
 			if (text == null) {
-				text = String.Empty;
+				text = string.Empty;
 			}
 			cachedContent = text;
 			buffer = text.ToCharArray();
@@ -111,13 +111,13 @@ namespace ICSharpCode.TextEditor.Document
 		
 		public void Remove(int offset, int length)
 		{
-			Replace(offset, length, String.Empty);
+			Replace(offset, length, string.Empty);
 		}
 		
 		public void Replace(int offset, int length, string text)
 		{
 			if (text == null) {
-				text = String.Empty;
+				text = string.Empty;
 			}
 			
 			#if DEBUG

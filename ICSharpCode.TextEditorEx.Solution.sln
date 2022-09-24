@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormTestXmlEditor", "WinFormTestXmlEditor\WinFormTestXmlEditor.csproj", "{39BEAFED-7888-4903-A3DA-DE8806349572}"
 EndProject
@@ -10,8 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4AB7D80-8A69-4F24-B401-C122F2D6393A}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
-		GitHubReleaseNotes.txt = GitHubReleaseNotes.txt
 		LICENSE = LICENSE
+		GitHubReleaseNotes.bat = GitHubReleaseNotes.bat
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -114,7 +114,7 @@ namespace ICSharpCode.TextEditor.Document
 		/// </summary>
 		public override string ToString()
 		{
-			return String.Format("[DefaultSelection : StartPosition={0}, EndPosition={1}]", startPosition, endPosition);
+			return string.Format("[DefaultSelection : StartPosition={0}, EndPosition={1}]", startPosition, endPosition);
 		}
 		public bool ContainsPosition(TextLocation position)
 		{

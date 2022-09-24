@@ -131,24 +131,24 @@ namespace ICSharpCode.TextEditor.Document
 			
 			name = span.GetAttribute("name");
 			if (span.HasAttribute("stopateol")) {
-				stopEOL = Boolean.Parse(span.GetAttribute("stopateol"));
+				stopEOL = bool.Parse(span.GetAttribute("stopateol"));
 			}
 			
 			begin   = span["Begin"].InnerText.ToCharArray();
 			beginColor = new HighlightColor(span["Begin"], color);
 			
 			if (span["Begin"].HasAttribute("singleword")) {
-				this.isBeginSingleWord = Boolean.Parse(span["Begin"].GetAttribute("singleword"));
+				this.isBeginSingleWord = bool.Parse(span["Begin"].GetAttribute("singleword"));
 			}
 			if (span["Begin"].HasAttribute("startofline")) {
-				this.isBeginStartOfLine = Boolean.Parse(span["Begin"].GetAttribute("startofline"));
+				this.isBeginStartOfLine = bool.Parse(span["Begin"].GetAttribute("startofline"));
 			}
 			
 			if (span["End"] != null) {
 				end  = span["End"].InnerText.ToCharArray();
 				endColor = new HighlightColor(span["End"], color);
 				if (span["End"].HasAttribute("singleword")) {
-					this.isEndSingleWord = Boolean.Parse(span["End"].GetAttribute("singleword"));
+					this.isEndSingleWord = bool.Parse(span["End"].GetAttribute("singleword"));
 				}
 
 			}

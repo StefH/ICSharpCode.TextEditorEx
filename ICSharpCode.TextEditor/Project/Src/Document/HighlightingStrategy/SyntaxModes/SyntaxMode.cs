@@ -90,7 +90,7 @@ namespace ICSharpCode.TextEditor.Document
 		}
 		public override string ToString() 
 		{
-			return String.Format("[SyntaxMode: FileName={0}, Name={1}, Extensions=({2})]", fileName, name, String.Join(",", extensions));
+			return string.Format("[SyntaxMode: FileName={0}, Name={1}, Extensions=({2})]", fileName, name, string.Join(",", extensions));
 		}
 	}
 }

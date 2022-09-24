@@ -290,7 +290,7 @@ namespace ICSharpCode.TextEditor
                     Document.FoldingManager.FoldingStrategy = new XmlFoldingStrategy();
                     break;
 
-                case "CSharp":
+                case "C#":
                     _foldingStrategy = foldingStrategy;
                     Document.FoldingManager.FoldingStrategy = new CSharpFoldingStrategy();
                     break;
@@ -358,7 +358,7 @@ namespace ICSharpCode.TextEditor
             if (Document.TextContent == null)
                 return false;
 
-            return !Document.TextContent.Trim().Equals(String.Empty);
+            return !Document.TextContent.Trim().Equals(string.Empty);
         }
 
         private bool CanFind()

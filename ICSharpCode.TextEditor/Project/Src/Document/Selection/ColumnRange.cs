@@ -59,7 +59,7 @@ namespace ICSharpCode.TextEditor.Document
 		
 		public override string ToString()
 		{
-			return String.Format("[ColumnRange: StartColumn={0}, EndColumn={1}]", startColumn, endColumn);
+			return string.Format("[ColumnRange: StartColumn={0}, EndColumn={1}]", startColumn, endColumn);
 		}
 		
 	}
