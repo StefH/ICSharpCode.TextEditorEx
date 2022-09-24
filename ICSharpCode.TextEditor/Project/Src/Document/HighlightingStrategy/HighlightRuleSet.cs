@@ -111,7 +111,7 @@ namespace ICSharpCode.TextEditor.Document
 			}
 			
 			if (el.Attributes["ignorecase"] != null) {
-				ignoreCase  = Boolean.Parse(el.Attributes["ignorecase"].InnerText);
+				ignoreCase  = bool.Parse(el.Attributes["ignorecase"].InnerText);
 			}
 			
 			for (int i  = 0; i < Delimiters.Length; ++i) {

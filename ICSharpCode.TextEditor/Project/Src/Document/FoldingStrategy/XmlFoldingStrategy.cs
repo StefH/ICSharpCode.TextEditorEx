@@ -29,10 +29,10 @@ namespace ICSharpCode.TextEditor.Src.Document.FoldingStrategy
         #region Fields
 
         readonly int _col;
-        string _foldText = String.Empty;
+        string _foldText = string.Empty;
         readonly int _line;
-        readonly string _name = String.Empty;
-        readonly string _prefix = String.Empty;
+        readonly string _name = string.Empty;
+        readonly string _prefix = string.Empty;
 
         #endregion Fields
 
@@ -95,7 +95,7 @@ namespace ICSharpCode.TextEditor.Src.Document.FoldingStrategy
         {
             get
             {
-                return _prefix.Length > 0 ? String.Concat(_prefix, ":", _name) : _name;
+                return _prefix.Length > 0 ? string.Concat(_prefix, ":", _name) : _name;
             }
         }
 
@@ -226,7 +226,7 @@ namespace ICSharpCode.TextEditor.Src.Document.FoldingStrategy
                     // Add 3 to the end col value to take into account the '-->'
                     int endCol = lines[lines.Length - 1].Length + startCol + 3;
                     int endLine = startLine + lines.Length - 1;
-                    string foldText = String.Concat("<!--", lines[0], "-->");
+                    string foldText = string.Concat("<!--", lines[0], "-->");
                     var foldMarker = new FoldMarker(document, startLine, startCol, endLine, endCol, FoldType.TypeBody, foldText);
                     foldMarkers.Add(foldMarker);
                 }
@@ -261,11 +261,11 @@ namespace ICSharpCode.TextEditor.Src.Document.FoldingStrategy
 
             if (ShowAttributesWhenFolded && reader.HasAttributes)
             {
-                newFoldStart.FoldText = String.Concat("<", newFoldStart.Name, " ", GetAttributeFoldText(reader), ">");
+                newFoldStart.FoldText = string.Concat("<", newFoldStart.Name, " ", GetAttributeFoldText(reader), ">");
             }
             else
             {
-                newFoldStart.FoldText = String.Concat("<", newFoldStart.Name, ">");
+                newFoldStart.FoldText = string.Concat("<", newFoldStart.Name, ">");
             }
 
             return newFoldStart;

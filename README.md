@@ -6,7 +6,7 @@
 
 Extended version based on ICSharpCode.TextEditor which supports
 
-* .NET 4.0 and .NET 5.0-windows
+* .NET 4.0., .NET 5.0-windows and .NET 6.0-windows
 * search and replace
 * go to linenumber
 * Lua and SQL Syntax highlighting

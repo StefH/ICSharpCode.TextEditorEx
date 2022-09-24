@@ -30,7 +30,6 @@ namespace WinFormTestXmlEditor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbHighlight = new System.Windows.Forms.ComboBox();
@@ -39,35 +38,32 @@ namespace WinFormTestXmlEditor
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 536);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(13, 410);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(695, 68);
+            this.textBox1.Size = new System.Drawing.Size(596, 53);
             this.textBox1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 511);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(13, 391);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 17);
+            this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "XML Folding errors:";
+            this.label1.Text = "Folding errors:";
             // 
             // cmbHighlight
             // 
             this.cmbHighlight.FormattingEnabled = true;
             this.cmbHighlight.Items.AddRange(new object[] {
             "XML",
+            "C#",
             "Lua",
-            "SQL",
-            "CSharp"});
-            this.cmbHighlight.Location = new System.Drawing.Point(742, 46);
-            this.cmbHighlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            "SQL"});
+            this.cmbHighlight.Location = new System.Drawing.Point(636, 35);
             this.cmbHighlight.Name = "cmbHighlight";
-            this.cmbHighlight.Size = new System.Drawing.Size(140, 25);
+            this.cmbHighlight.Size = new System.Drawing.Size(121, 21);
             this.cmbHighlight.TabIndex = 3;
             this.cmbHighlight.Text = "XML";
             this.cmbHighlight.SelectedIndexChanged += new System.EventHandler(this.cmbHighlight_SelectedIndexChanged);
@@ -78,29 +74,26 @@ namespace WinFormTestXmlEditor
             this.textEditorControl1.ContextMenuShowDefaultIcons = true;
             this.textEditorControl1.ContextMenuShowShortCutKeys = true;
             this.textEditorControl1.FoldingStrategy = "XML";
-            this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 8.25F);
             this.textEditorControl1.HideVScrollBarIfPossible = true;
-            this.textEditorControl1.Location = new System.Drawing.Point(15, 46);
-            this.textEditorControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textEditorControl1.Location = new System.Drawing.Point(13, 35);
             this.textEditorControl1.Name = "textEditorControl1";
             this.textEditorControl1.ShowVRuler = false;
-            this.textEditorControl1.Size = new System.Drawing.Size(695, 462);
+            this.textEditorControl1.Size = new System.Drawing.Size(596, 353);
             this.textEditorControl1.SyntaxHighlighting = "XML";
             this.textEditorControl1.TabIndex = 0;
-            this.textEditorControl1.Text = resources.GetString("textEditorControl1.Text");
             this.textEditorControl1.VRulerRow = 999;
             this.textEditorControl1.TextChanged += new System.EventHandler(this.textEditorControl1_TextChanged);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 621);
+            this.ClientSize = new System.Drawing.Size(766, 475);
             this.Controls.Add(this.cmbHighlight);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textEditorControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);

@@ -42,7 +42,7 @@ namespace ICSharpCode.TextEditor.Document
 		
 		public override string ToString()
 		{
-			return String.Format("[AbstractSegment: Offset = {0}, Length = {1}]",
+			return string.Format("[AbstractSegment: Offset = {0}, Length = {1}]",
 			                     Offset,
 			                     Length);
 		}

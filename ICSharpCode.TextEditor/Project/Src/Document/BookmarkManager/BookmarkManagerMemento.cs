@@ -58,7 +58,7 @@ namespace ICSharpCode.TextEditor.Document
 		public BookmarkManagerMemento(XmlElement element)
 		{
 			foreach (XmlElement el in element.ChildNodes) {
-				bookmarks.Add(Int32.Parse(el.Attributes["line"].InnerText));
+				bookmarks.Add(int.Parse(el.Attributes["line"].InnerText));
 			}
 		}
 		

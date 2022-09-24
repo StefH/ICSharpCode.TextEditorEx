@@ -72,7 +72,7 @@ namespace ICSharpCode.TextEditor.Document
 		
 		public void Remove(int offset, int length)
 		{
-			Replace(offset, length, String.Empty);
+			Replace(offset, length, string.Empty);
 		}
 		
 		public void Replace(int offset, int length, string text)

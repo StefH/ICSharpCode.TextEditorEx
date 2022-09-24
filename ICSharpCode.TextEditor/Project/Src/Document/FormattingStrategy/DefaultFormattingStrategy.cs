@@ -37,7 +37,7 @@ namespace ICSharpCode.TextEditor.Document
 			StringBuilder whitespaces = new StringBuilder();
 			
 			foreach (char ch in lineText) {
-				if (Char.IsWhiteSpace(ch)) {
+				if (char.IsWhiteSpace(ch)) {
 					whitespaces.Append(ch);
 				} else {
 					break;

@@ -55,7 +55,7 @@ namespace ICSharpCode.TextEditor.Document
 			color = new HighlightColor(mark);
 			what  = mark.InnerText;
 			if (mark.Attributes["markmarker"] != null) {
-				markMarker = Boolean.Parse(mark.Attributes["markmarker"].InnerText);
+				markMarker = bool.Parse(mark.Attributes["markmarker"].InnerText);
 			}
 		}
 	}

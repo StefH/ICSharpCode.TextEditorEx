@@ -428,23 +428,23 @@ namespace ICSharpCode.TextEditor
 		
 		bool IsSelectableChar(char ch)
 		{
-			return Char.IsLetterOrDigit(ch) || ch=='_';
+			return char.IsLetterOrDigit(ch) || ch=='_';
 		}
 		
 		int FindWordStart(IDocument document, int offset)
 		{
 			LineSegment line = document.GetLineSegmentForOffset(offset);
 			
-			if (offset > 0 && Char.IsWhiteSpace(document.GetCharAt(offset - 1)) && Char.IsWhiteSpace(document.GetCharAt(offset))) {
-				while (offset > line.Offset && Char.IsWhiteSpace(document.GetCharAt(offset - 1))) {
+			if (offset > 0 && char.IsWhiteSpace(document.GetCharAt(offset - 1)) && char.IsWhiteSpace(document.GetCharAt(offset))) {
+				while (offset > line.Offset && char.IsWhiteSpace(document.GetCharAt(offset - 1))) {
 					--offset;
 				}
-			} else  if (IsSelectableChar(document.GetCharAt(offset)) || (offset > 0 && Char.IsWhiteSpace(document.GetCharAt(offset)) && IsSelectableChar(document.GetCharAt(offset - 1))))  {
+			} else  if (IsSelectableChar(document.GetCharAt(offset)) || (offset > 0 && char.IsWhiteSpace(document.GetCharAt(offset)) && IsSelectableChar(document.GetCharAt(offset - 1))))  {
 				while (offset > line.Offset && IsSelectableChar(document.GetCharAt(offset - 1))) {
 					--offset;
 				}
 			} else {
-				if (offset > 0 && !Char.IsWhiteSpace(document.GetCharAt(offset - 1)) && !IsSelectableChar(document.GetCharAt(offset - 1)) ) {
+				if (offset > 0 && !char.IsWhiteSpace(document.GetCharAt(offset - 1)) && !IsSelectableChar(document.GetCharAt(offset - 1)) ) {
 					return Math.Max(0, offset - 1);
 				}
 			}
@@ -463,9 +463,9 @@ namespace ICSharpCode.TextEditor
 				while (offset < endPos && IsSelectableChar(document.GetCharAt(offset))) {
 					++offset;
 				}
-			} else if (Char.IsWhiteSpace(document.GetCharAt(offset))) {
-				if (offset > 0 && Char.IsWhiteSpace(document.GetCharAt(offset - 1))) {
-					while (offset < endPos && Char.IsWhiteSpace(document.GetCharAt(offset))) {
+			} else if (char.IsWhiteSpace(document.GetCharAt(offset))) {
+				if (offset > 0 && char.IsWhiteSpace(document.GetCharAt(offset - 1))) {
+					while (offset < endPos && char.IsWhiteSpace(document.GetCharAt(offset))) {
 						++offset;
 					}
 				}

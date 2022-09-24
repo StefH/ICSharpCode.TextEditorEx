@@ -29,9 +29,9 @@ namespace ICSharpCode.TextEditor.Actions
 				int tabIndent = document.TextEditorProperties.IndentationSize;
 				if (textArea != null) {
 					int column = textArea.TextView.GetVisualColumn(textArea.Caret.Line, textArea.Caret.Column);
-					indent.Append(new String(' ', tabIndent - column % tabIndent));
+					indent.Append(new string(' ', tabIndent - column % tabIndent));
 				} else {
-					indent.Append(new String(' ', tabIndent));
+					indent.Append(new string(' ', tabIndent));
 				}
 			} else {
 				indent.Append('\t');
@@ -481,8 +481,8 @@ namespace ICSharpCode.TextEditor.Actions
 	
 	public class BlockCommentRegion
 	{
-		string commentStart = String.Empty;
-		string commentEnd = String.Empty;
+		string commentStart = string.Empty;
+		string commentEnd = string.Empty;
 		int startOffset = -1;
 		int endOffset = -1;
 		

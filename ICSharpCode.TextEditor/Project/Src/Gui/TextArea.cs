@@ -733,7 +733,7 @@ namespace ICSharpCode.TextEditor
 		
 		string GenerateWhitespaceString(int length)
 		{
-			return new String(' ', length);
+			return new string(' ', length);
 		}
 		/// <remarks>
 		/// Inserts a single character at the caret position
@@ -746,7 +746,7 @@ namespace ICSharpCode.TextEditor
 			}
 			
 			// filter out forgein whitespace chars and replace them with standard space (ASCII 32)
-			if (Char.IsWhiteSpace(ch) && ch != '\t' && ch != '\n') {
+			if (char.IsWhiteSpace(ch) && ch != '\t' && ch != '\n') {
 				ch = ' ';
 			}
 			

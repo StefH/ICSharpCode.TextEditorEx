@@ -97,7 +97,7 @@ namespace ICSharpCode.TextEditor.Document
 			
 			if (cNames.Length == 2) {
 				// hack : can't figure out how to parse doubles with '.' (culture info might set the '.' to ',')
-				double factor = Double.Parse(cNames[1]) / 100;
+				double factor = double.Parse(cNames[1]) / 100;
 				c = Color.FromArgb((int)((double)c.R * factor), (int)((double)c.G * factor), (int)((double)c.B * factor));
 			}
 			
@@ -111,11 +111,11 @@ namespace ICSharpCode.TextEditor.Document
 		{
 			Debug.Assert(el != null, "ICSharpCode.TextEditor.Document.SyntaxColor(XmlElement el) : el == null");
 			if (el.Attributes["bold"] != null) {
-				bold = Boolean.Parse(el.Attributes["bold"].InnerText);
+				bold = bool.Parse(el.Attributes["bold"].InnerText);
 			}
 			
 			if (el.Attributes["italic"] != null) {
-				italic = Boolean.Parse(el.Attributes["italic"].InnerText);
+				italic = bool.Parse(el.Attributes["italic"].InnerText);
 			}
 			
 			if (el.Attributes["color"] != null) {
@@ -152,13 +152,13 @@ namespace ICSharpCode.TextEditor.Document
 		{
 			Debug.Assert(el != null, "ICSharpCode.TextEditor.Document.SyntaxColor(XmlElement el) : el == null");
 			if (el.Attributes["bold"] != null) {
-				bold = Boolean.Parse(el.Attributes["bold"].InnerText);
+				bold = bool.Parse(el.Attributes["bold"].InnerText);
 			} else {
 				bold = defaultColor.Bold;
 			}
 			
 			if (el.Attributes["italic"] != null) {
-				italic = Boolean.Parse(el.Attributes["italic"].InnerText);
+				italic = bool.Parse(el.Attributes["italic"].InnerText);
 			} else {
 				italic = defaultColor.Italic;
 			}
@@ -251,12 +251,12 @@ namespace ICSharpCode.TextEditor.Document
 			int offset = 0;
 			if (c.Length > 7) {
 				offset = 2;
-				a = Int32.Parse(c.Substring(1,2), NumberStyles.HexNumber);
+				a = int.Parse(c.Substring(1,2), NumberStyles.HexNumber);
 			}
 			
-			int r = Int32.Parse(c.Substring(1 + offset,2), NumberStyles.HexNumber);
-			int g = Int32.Parse(c.Substring(3 + offset,2), NumberStyles.HexNumber);
-			int b = Int32.Parse(c.Substring(5 + offset,2), NumberStyles.HexNumber);
+			int r = int.Parse(c.Substring(1 + offset,2), NumberStyles.HexNumber);
+			int g = int.Parse(c.Substring(3 + offset,2), NumberStyles.HexNumber);
+			int b = int.Parse(c.Substring(5 + offset,2), NumberStyles.HexNumber);
 			return Color.FromArgb(a, r, g, b);
 		}
 		

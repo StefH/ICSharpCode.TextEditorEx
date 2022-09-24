@@ -93,7 +93,7 @@ namespace ICSharpCode.TextEditor.Document
 		}
 		public override string ToString()
 		{
-			return String.Format("[DocumentEventArgs: Document = {0}, Offset = {1}, Text = {2}, Length = {3}]",
+			return string.Format("[DocumentEventArgs: Document = {0}, Offset = {1}, Text = {2}, Length = {3}]",
 			                     Document,
 			                     Offset,
 			                     Text,

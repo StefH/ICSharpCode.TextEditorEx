@@ -152,7 +152,7 @@ namespace ICSharpCode.TextEditor.Document
 		public string Word {
 			get {
 				if (document == null) {
-					return String.Empty;
+					return string.Empty;
 				}
 				return document.GetText(line.Offset + offset, length);
 			}

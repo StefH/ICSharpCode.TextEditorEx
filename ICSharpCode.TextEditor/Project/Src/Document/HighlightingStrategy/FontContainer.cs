@@ -92,7 +92,7 @@ namespace ICSharpCode.TextEditor.Document
 		public static Font ParseFont(string font)
 		{
 			string[] descr = font.Split(new char[]{',', '='});
-			return new Font(descr[1], Single.Parse(descr[3]));
+			return new Font(descr[1], float.Parse(descr[3]));
 		}
 		
 		public FontContainer(Font defaultFont)
