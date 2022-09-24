@@ -1,3 +1,6 @@
+# 1.2.0 (24 September 2022)
+- [#18](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/18) - Add .net6-windows [enhancement] contributed by [StefH](https://github.com/StefH)
+
 # 1.1.0 (13 December 2020)
 - [#7](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/7) - add  ContextMenu  Cut,Copy,Paste,Select All , Redo and  Undo! [enhancement] contributed by [maikebing](https://github.com/maikebing)
 - [#13](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/13) - upgrade to .net 5.0 [enhancement] contributed by [maikebing](https://github.com/maikebing)

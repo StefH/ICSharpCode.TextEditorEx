@@ -13,3 +13,8 @@ Extended version based on ICSharpCode.TextEditor which supports
 * XML folding and CSharp folding
 * ContextMenu : Cut,Copy,Paste,Select All, Redo and Undo
 * Several enhancements
+
+
+## Example
+
+![Example](./Resources/Example.png)
