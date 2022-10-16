@@ -1,33 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Library</OutputType>
-        <TargetFrameworks>net40;net5.0-windows;net6.0-windows</TargetFrameworks>
-        <UseWindowsForms>true</UseWindowsForms>
-        <LangVersion>10</LangVersion>
-        <Nullable>enable</Nullable>
-        <PackageId>ICSharpCode.TextEditorEx</PackageId>
-        <Copyright>Copyright © Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy 2014-2022</Copyright>
-        <Version>1.2.0</Version>
-        <PackageProjectUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</PackageProjectUrl>
+	    <Version>1.2.1</Version>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net40;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<LangVersion>10</LangVersion>
+		<Nullable>enable</Nullable>
+		<PackageId>ICSharpCode.TextEditorEx</PackageId>
+		<Copyright>Copyright © Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy 2014-2022</Copyright>
+		<PackageProjectUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</PackageProjectUrl>
         <RepositoryUrl>https://github.com/StefH/ICSharpCode.TextEditorEx</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>TextEditor;ICSharpCode</PackageTags>
         <Authors>Stef Heyenrath, SharpDevelop, Qwertie and MysticBoy</Authors>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	    <PackageLicenseExpression>LGPL-2.1-or-later</PackageLicenseExpression>
         <RootNamespace>ICSharpCode.TextEditor</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="..\..\LICENSE">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
-    </ItemGroup>
 
     <ItemGroup  Condition=" '$(TargetFramework)' == 'net40' ">
         <Reference Include="System.Windows.Forms" />
