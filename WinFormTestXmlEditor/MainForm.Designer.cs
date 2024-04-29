@@ -60,7 +60,8 @@ namespace WinFormTestXmlEditor
             "XML",
             "C#",
             "Lua",
-            "SQL"});
+            "SQL",
+            "F#"});
             this.cmbHighlight.Location = new System.Drawing.Point(636, 35);
             this.cmbHighlight.Name = "cmbHighlight";
             this.cmbHighlight.Size = new System.Drawing.Size(121, 21);

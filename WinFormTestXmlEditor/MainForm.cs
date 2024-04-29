@@ -44,6 +44,7 @@ namespace WinFormTestXmlEditor
             {
                 "XML" => Resources.ExampleXML,
                 "C#" => Resources.ExampleCSharp,
+                "F#" => Resources.ExampleFSharp,
                 _ => string.Empty
             };
 

@@ -9,6 +9,7 @@ namespace ICSharpCode.TextEditorEx
         public const string Coco = "Coco";
         public const string CPPNET = "C++.NET";
         public const string CSharp = "C#";
+        public const string FSharp = "F#";
         public const string HTML = "HTML";
         public const string Java = "Java";
         public const string JavaScript = "JavaScript";

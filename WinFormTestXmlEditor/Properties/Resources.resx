@@ -141,6 +141,15 @@ namespace WinFormTestXmlEditor
     }
 }</value>
   </data>
+  <data name="ExampleFSharp" xml:space="preserve">
+    <value>open System
+
+/// A sample function
+let hello (x:string) = "Hello " + x
+
+printfn "%s" (hello "world")
+</value>
+  </data>
   <data name="ExampleXML" xml:space="preserve">
     <value>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 
