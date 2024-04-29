@@ -88,6 +88,21 @@ namespace WinFormTestXmlEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to open System
+        ///
+        ////// A sample function
+        ///let hello (x:string) = &quot;Hello &quot; + x
+        ///
+        ///printfn &quot;%s&quot; (hello &quot;world&quot;)
+        ///.
+        /// </summary>
+        internal static string ExampleFSharp {
+            get {
+                return ResourceManager.GetString("ExampleFSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///
         ///&lt;!-- comments --&gt;

@@ -8,6 +8,7 @@ Boo
 Coco
 C++.NET
 C#
+F#
 HTML
 Java
 JavaScript
