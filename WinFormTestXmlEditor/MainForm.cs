@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using ICSharpCode.TextEditorEx;
 using WinFormTestXmlEditor.Properties;
 
 namespace WinFormTestXmlEditor
@@ -9,7 +10,7 @@ namespace WinFormTestXmlEditor
         {
             InitializeComponent();
 
-            UpdateText("XML");
+            UpdateText(SyntaxModes.XML);
 
             //textEditorControl1.SetHighlighting("XML");
             //textEditorControl1.SetFoldingStrategy("XML");

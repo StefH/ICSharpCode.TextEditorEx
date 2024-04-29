@@ -1,3 +1,6 @@
+# 1.3.0 (29 April 2024)
+- [#20](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/20) - F# language support added [enhancement] contributed by [Thorium](https://github.com/Thorium)
+
 # 1.2.0 (24 September 2022)
 - [#18](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/18) - Add .net6-windows [enhancement] contributed by [StefH](https://github.com/StefH)
 
