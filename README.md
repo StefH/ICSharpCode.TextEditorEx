@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/cyaqbvsn9lahvtg2?svg=true)](https://ci.appveyor.com/project/StefH/icsharpcode-texteditorex)
 
-[![NuGet](https://buildstats.info/nuget/ICSharpCode.TextEditorEx)](https://www.nuget.org/packages/ICSharpCode.TextEditorEx)
+[![NuGet](https://img.shields.io/nuget/v/ICSharpCode.TextEditorEx)](https://www.nuget.org/packages/ICSharpCode.TextEditorEx)
 
 Extended version based on ICSharpCode.TextEditor which supports
 
