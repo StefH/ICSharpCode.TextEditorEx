@@ -13,6 +13,7 @@ namespace ICSharpCode.TextEditorEx
         public const string HTML = "HTML";
         public const string Java = "Java";
         public const string JavaScript = "JavaScript";
+        public const string Json = "JSON";
         public const string Patch = "Patch";
         public const string PHP = "PHP";
         public const string TeX = "TeX";

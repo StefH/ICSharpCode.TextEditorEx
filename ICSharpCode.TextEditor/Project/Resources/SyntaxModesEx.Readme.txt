@@ -12,6 +12,7 @@ F#
 HTML
 Java
 JavaScript
+Json
 Patch
 PHP
 TeX

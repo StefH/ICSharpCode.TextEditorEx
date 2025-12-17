@@ -23,11 +23,15 @@
 	      name       = "C#"
 	      extensions = ".cs"/>
 
-  <Mode file="F#.xshd"
-        name="F#"
-        extensions=".fs;.fsi;.fsx;.fsscript" />
+	<Mode file="F#.xshd"
+	      name="F#"
+	      extensions=".fs;.fsi;.fsx;.fsscript" />
 
-  <Mode file       = "HTML-Mode.xshd"
+	<Mode file="JSON.xshd"
+	      name="JSON"
+	      extensions=".json" />
+
+	<Mode file       = "HTML-Mode.xshd"
 	      name       = "HTML"
 	      extensions = ".htm;.html"/>
 	
