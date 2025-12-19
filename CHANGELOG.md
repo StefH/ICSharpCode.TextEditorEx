@@ -1,4 +1,7 @@
-# 1.3.0 (29 April 2024)
+# 1.4.0 (19 December 2025)
+- [#21](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/21) -  add JSON language support contributed by [Sonic853](https://github.com/Sonic853)
+
+# 1.3.0 (17 December 2024)
 - [#20](https://github.com/StefH/ICSharpCode.TextEditorEx/pull/20) - F# language support added [enhancement] contributed by [Thorium](https://github.com/Thorium)
 
 # 1.2.0 (24 September 2022)
